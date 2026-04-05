@@ -1,0 +1,61 @@
+# AGENTS
+
+## Project overview
+- Stack: Node.js + Express 5 + TypeScript (ESM).
+- Entrypoint: `src/index.ts`.
+- Build output: `dist/`.
+- Main purpose: pantry management API (inventory, expiration control, and shopping planning).
+
+## Working commands
+- Install deps: `npm install`
+- Dev mode: `npm run dev`
+- Type check: `npm run typecheck`
+- Build: `npm run build`
+- Start build: `npm run start`
+
+## Development guidelines
+- Keep TypeScript strict mode enabled.
+- Use ESM import/export syntax.
+- Prefer small route modules and move business logic into services.
+- Validate request payloads before hitting business logic.
+- Never commit secrets; use `.env` and keep `.env.example` updated.
+
+## Response conventions
+- Success response: `{ ok: true, data }`
+- Error response: `{ ok: false, error: { code, message, details? } }`
+- Prefer explicit HTTP status codes by scenario.
+
+## Domain entities (baseline)
+- User
+- Pantry
+- PantryItem
+- Product
+- Category
+- ShoppingList
+- ShoppingListItem
+
+## Source of truth docs
+- `README.md`: quick start and high-level context.
+- `docs/PROJECT_OVERVIEW.md`: purpose, scope, and decisions.
+- `docs/DOMAIN_MODEL.md`: entities, relationships, and invariants.
+- `docs/API_CONVENTIONS.md`: response shapes, errors, and endpoint rules.
+- `docs/SWAGGER_GUIDE.md`: patterns for documenting endpoints in OpenAPI/Swagger.
+- `.github/copilot-instructions.md`: coding rules for Copilot.
+
+## Agent workflow
+1. Reaadding endpoints, document them with JSDoc `@openapi` following `docs/SWAGGER_GUIDE.md`.
+3. If touching API contracts, update `docs/API_CONVENTIONS.md`.
+4. If touching domain rules, update `docs/DOMAIN_MODEL.md`.
+5. Add or update reusable schemas in `src/docs/swagger.ts` if needed.
+6. Run `npm run typecheck` and `npm run build` before finalizing.
+7. Verify documentation renders correctly at http://localhost:3000/docs
+4. Run `npm run typecheck` and `npm run build` before finalizing.
+
+## Suggested folder structure
+- `src/index.ts` bootstrap + middleware
+- `src/routes/*` route handlers
+- `src/controllers/*` HTTP orchestration
+- `src/services/*` business logic
+- `src/middlewares/*` auth/validation/error handlers
+- `src/lib/*` reusable utilities
+- `src/types/*` shared TypeScript types
