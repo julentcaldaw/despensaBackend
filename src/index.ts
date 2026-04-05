@@ -4,54 +4,54 @@ import express from "express";
 import swaggerUi from "swagger-ui-express";
 
 import { swaggerSpec } from "./docs/swagger.js";
+import { authRouter } from "./modules/auth/auth.routes.js";
+import { ingredientsRouter } from "./modules/ingredients/ingredients.routes.js";
 
 dotenv.config();
 
 const app = express();
 
 const port = Number(process.env.PORT ?? 3000);
-const corsOrigin = process.env.CORS_ORIGIN ?? "*";
+const corsOrigin = process.env.CORS_ORIGIN ?? "";
+
+app.use(
+    cors({
+        origin: corsOrigin,
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true
+    })
+);
+app.use(express.json());
+
+// Swagger documentation
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /**
  * @openapi
  * /health:
  *   get:
  *     summary: Health check
- *     description: Verifica el estado del servicio
+ *     description: Returns basic status and timestamp for API health monitoring.
  *     tags:
  *       - System
  *     responses:
  *       200:
- *         description: Servicio operacional
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 ok:
- *                   type: boolean
- *                   example: true
- *                 service:
- *                   type: string
- *                   example: despensa-api
- *                 timestamp:
- *                   type: string
- *                   format: date-time
- *                   example: "2026-04-05T10:30:00.000Z"
+ *         description: Service available
  */
-app.use(cors({ origin: corsOrigin }));
-app.use(express.json());
-
-// Swagger documentation
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 app.get("/health", (_req, res) => {
     res.status(200).json({
         ok: true,
-        service: "despensa-api",
-        timestamp: new Date().toISOString(),
+        data: {
+            status: "up",
+            timestamp: new Date().toISOString(),
+        },
     });
 });
+
+app.use("/api/auth", authRouter);
+app.use("/api/ingredients", ingredientsRouter);
+
 
 app.listen(port, () => {
     console.log(`API running on http://localhost:${port}`);

@@ -48,7 +48,7 @@
 ## Agent workflow
 1. Read `README.md` and `docs/PROJECT_OVERVIEW.md` before large changes.
 2. If adding new entities, update `prisma/schema.prisma` first, then run `npm run prisma:migrate`.
-3. Generate Prisma types: `npm run prisma:generate` (generates `src/generated/prisma`).
+3. Generate Prisma types: `npm run prisma:generate` (updates Prisma Client in `node_modules/@prisma/client`).
 4. If adding endpoints, document them with JSDoc `@openapi` following `docs/SWAGGER_GUIDE.md`.
 5. If touching API contracts, update `docs/API_CONVENTIONS.md`.
 6. If touching domain rules, update `docs/DOMAIN_MODEL.md`.
