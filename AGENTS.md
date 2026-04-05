@@ -12,6 +12,9 @@
 - Type check: `npm run typecheck`
 - Build: `npm run build`
 - Start build: `npm run start`
+- Generate Prisma Client: `npm run prisma:generate`
+- Run migrations: `npm run prisma:migrate`
+- View database UI: `npm run prisma:studio`
 
 ## Development guidelines
 - Keep TypeScript strict mode enabled.
@@ -43,13 +46,15 @@
 - `.github/copilot-instructions.md`: coding rules for Copilot.
 
 ## Agent workflow
-1. Reaadding endpoints, document them with JSDoc `@openapi` following `docs/SWAGGER_GUIDE.md`.
-3. If touching API contracts, update `docs/API_CONVENTIONS.md`.
-4. If touching domain rules, update `docs/DOMAIN_MODEL.md`.
-5. Add or update reusable schemas in `src/docs/swagger.ts` if needed.
-6. Run `npm run typecheck` and `npm run build` before finalizing.
-7. Verify documentation renders correctly at http://localhost:3000/docs
-4. Run `npm run typecheck` and `npm run build` before finalizing.
+1. Read `README.md` and `docs/PROJECT_OVERVIEW.md` before large changes.
+2. If adding new entities, update `prisma/schema.prisma` first, then run `npm run prisma:migrate`.
+3. Generate Prisma types: `npm run prisma:generate` (generates `src/generated/prisma`).
+4. If adding endpoints, document them with JSDoc `@openapi` following `docs/SWAGGER_GUIDE.md`.
+5. If touching API contracts, update `docs/API_CONVENTIONS.md`.
+6. If touching domain rules, update `docs/DOMAIN_MODEL.md`.
+7. Add or update reusable schemas in `src/docs/swagger.ts` if needed.
+8. Run `npm run typecheck` and `npm run build` before finalizing.
+9. Verify documentation renders correctly at http://localhost:3000/docs.
 
 ## Suggested folder structure
 - `src/index.ts` bootstrap + middleware

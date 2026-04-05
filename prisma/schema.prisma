@@ -1,0 +1,217 @@
+// Prisma schema for despensa-api
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+// ─────────────────────────────────────────────
+// User
+// ─────────────────────────────────────────────
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  orders        Order[]
+  shoppingItems ShoppingItem[]
+  savedRecipes  UserSavedRecipe[]
+  favoriteShops UserFavoriteShop[]
+  recipes       Recipe[]
+
+  @@map("users")
+}
+
+// ─────────────────────────────────────────────
+// Ingredients
+// ─────────────────────────────────────────────
+
+// Category for ingredients (dairy, vegetables, pantry staples...)
+model IngredientCategory {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  // Relations
+  ingredients Ingredient[]
+
+  @@map("ingredient_categories")
+}
+
+// Dietary/allergen restriction (gluten, lactose, vegan...)
+model Restriction {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  // Relations
+  ingredients IngredientRestriction[]
+
+  @@map("restrictions")
+}
+
+// Reusable ingredient definition
+model Ingredient {
+  id         Int @id @default(autoincrement())
+  name       String
+  categoryId Int
+
+  // Relations
+  category     IngredientCategory     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  restrictions IngredientRestriction[]
+  recipes      RecipeIngredient[]
+
+  @@index([categoryId])
+  @@map("ingredients")
+}
+
+// Join table: Ingredient <-> Restriction (many-to-many)
+model IngredientRestriction {
+  ingredientId  Int
+  restrictionId Int
+
+  ingredient  Ingredient  @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  restriction Restriction @relation(fields: [restrictionId], references: [id], onDelete: Cascade)
+
+  @@id([ingredientId, restrictionId])
+  @@map("ingredient_restrictions")
+}
+
+// ─────────────────────────────────────────────
+// Recipes
+// ─────────────────────────────────────────────
+
+model Recipe {
+  id         Int        @id @default(autoincrement())
+  name       String
+  authorId   Int
+  difficulty Difficulty
+  prepTime   Int        // preparation time in minutes
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  // Relations
+  author      User               @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  ingredients RecipeIngredient[]
+  savedBy     UserSavedRecipe[]
+
+  @@index([authorId])
+  @@map("recipes")
+}
+
+// Join table: Recipe <-> Ingredient (many-to-many) with quantity
+model RecipeIngredient {
+  recipeId     Int
+  ingredientId Int
+  quantity     Float?
+  unit         String?
+
+  recipe     Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+
+  @@id([recipeId, ingredientId])
+  @@map("recipe_ingredients")
+}
+
+// Join table: User saved/liked recipes (many-to-many)
+model UserSavedRecipe {
+  userId   Int
+  recipeId Int
+  savedAt  DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, recipeId])
+  @@map("user_saved_recipes")
+}
+
+// ─────────────────────────────────────────────
+// Shops
+// ─────────────────────────────────────────────
+
+model Shop {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  // Relations
+  favoritedBy UserFavoriteShop[]
+  orders      Order[]
+
+  @@map("shops")
+}
+
+// Join table: User <-> Shop favorite (many-to-many)
+model UserFavoriteShop {
+  userId Int
+  shopId Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shop Shop @relation(fields: [shopId], references: [id], onDelete: Cascade)
+
+  @@id([userId, shopId])
+  @@map("user_favorite_shops")
+}
+
+// ─────────────────────────────────────────────
+// Orders & Shopping
+// ─────────────────────────────────────────────
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  shopId    Int
+  date      DateTime
+  price     Float
+  ticket    String?  // optional photo URL of the purchase receipt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shop          Shop           @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shoppingItems ShoppingItem[]
+
+  @@index([userId])
+  @@index([shopId])
+  @@map("orders")
+}
+
+model ShoppingItem {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  orderId   Int?     // null = pending in shopping list; set = belongs to a completed order
+  name      String
+  quantity  Float?
+  unit      String?
+  checked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order Order? @relation(fields: [orderId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([orderId])
+  @@map("shopping_items")
+}
