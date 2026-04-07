@@ -1,12 +1,221 @@
-# Listado de ingredientes más utilizados en gastronomía española, mediterránea e internacional
+# Ingredientes clasificados
 
-> Listado de ingredientes organizados por categoría, cubriendo la cocina española, mediterránea (italiana, griega, árabe, norteafricana, levantina) e internacional (asiática, latinoamericana, anglosajona, africana). Se mantiene un único nombre genérico por ingrediente, eliminando variantes de color, tamaño o subvariedad.
+## Carne
+- Solomillo de ternera
+- Entrecot
+- Chuletón
+- Lomo alto de vacuno
+- Lomo bajo de vacuno
+- Filete de ternera
+- Ternera para guisar (morcillo)
+- Carrillada de ternera
+- Falda de ternera
+- Costilla de ternera
+- Rabo de toro
+- Ossobuco (jarrete)
+- Carne picada de ternera
+- Lengua de ternera
+- Hígado de ternera
+- Riñones de ternera
+- Mollejas de ternera
+- Corazón de ternera
+- Callos de ternera
+- Morro de ternera
+- Oreja de ternera
+- Tuétano de vacuno
+- Redondo de ternera
+- Cadera de vacuno
+- Vacío (flank steak)
+- Entraña (skirt steak)
+- Vaca madurada
+- Lomo de cerdo
+- Solomillo de cerdo
+- Chuleta de cerdo
+- Costilla de cerdo
+- Panceta fresca
+- Papada de cerdo
+- Carrillada de cerdo
+- Paleta de cerdo
+- Pierna de cerdo
+- Manitas de cerdo
+- Oreja de cerdo
+- Rabo de cerdo
+- Hígado de cerdo
+- Asadura de cerdo
+- Carne picada de cerdo
+- Secreto ibérico
+- Presa ibérica
+- Pluma ibérica
+- Cochinillo (lechazo de cerdo)
+- Pierna de cordero
+- Paletilla de cordero
+- Chuletilla de cordero
+- Costilla de cordero
+- Cuello de cordero
+- Carrillada de cordero
+- Hígado de cordero
+- Mollejas de cordero
+- Carne picada de cordero
+- Lechazo (cordero lechal)
+- Pierna de cabrito
+- Paletilla de cabrito
+- Pechuga de pollo
+- Muslo de pollo
+- Contramuslo de pollo
+- Ala de pollo
+- Pollo entero
+- Hígado de pollo
+- Corazón de pollo
+- Molleja de pollo
+- Capón
+- Pechuga de pavo
+- Muslo de pavo
+- Pavo entero
+- Magret de pato
+- Muslo de pato
+- Hígado de pato
+- Foie gras de pato
+- Foie gras de oca
+- Pintada (gallina de Guinea)
+- Codorniz entera
+- Perdiz
+- Faisán
+- Pichón
+- Paloma torcaz
+- Becada
+- Avestruz (filete)
+- Jabalí
+- Venado (ciervo)
+- Corzo
+- Gamo
+- Liebre
+- Conejo de campo
+- Conejo de granja
+- Faisán salvaje
+- Perdiz salvaje
+- Becada salvaje
 
----
+## Pescado y marisco
+- Merluza
+- Bacalao fresco
+- Bacalao salado
+- Eglefino (haddock)
+- Abadejo
+- Faneca
+- Lenguado
+- Gallo
+- Acedía
+- Rodaballo
+- Halibut (fletán)
+- Rape
+- Dorada
+- Lubina
+- Robalo
+- Mero
+- Cherne
+- Sama
+- Dentón
+- Besugo
+- Pargo
+- Salmonete
+- Mújol (lisa)
+- Corvina
+- Pez limón
+- Salmón atlántico
+- Salmón del Pacífico
+- Trucha de mar
+- Trucha arco iris
+- Trucha común
+- Atún rojo
+- Atún de aleta amarilla
+- Atún listado (skipjack)
+- Bonito del Norte
+- Caballa
+- Jurel (chicharro)
+- Anchoa (boquerón fresco)
+- Sardina
+- Arenque
+- Espadín (sprat)
+- Mahimahi (dorado del Pacífico)
+- Wahoo
+- Barracuda
+- Pez espada
+- Tilapia
+- Pangasius (panga)
+- Pez gato (bagre)
+- Siluro europeo
+- Chileno (Patagonian toothfish)
+- John Dory (san pedro)
+- Lucio
+- Lucioperca
+- Tenca
+- Carpa
+- Perca
+- Anguila
+- Lamprea
+- Esturión
+- Trucha fario
+- Gamba blanca del Mediterráneo
+- Gamba roja
+- Camarón
+- Quisquilla
+- Langostino
+- Esquilas (galera / mantis shrimp)
+- Bogavante
+- Langosta
+- Cigala
+- Centollo
+- Buey de mar
+- Nécora
+- Cangrejo azul
+- Cangrejo real de Alaska
+- Percebe
+- Mejillón
+- Almeja fina
+- Almeja japónica (Manila)
+- Chirla
+- Berberecho
+- Navaja (razor clam)
+- Ostra
+- Vieira
+- Zamburiña
+- Tellina (coquina)
+- Pulpo
+- Sepia
+- Calamar
+- Chipirón
+- Pota
+- Jibia
+- Caracol de tierra
+- Bígaro
+- Lapa
+- Oreja de mar (abulón)
+- Cañaílla (murex)
+- Erizo de mar (huevas / uni)
+- Pepino de mar (holoturia)
+- Alga nori (para sushi)
+- Alga nori en snack
+- Alga kombu seca
+- Alga wakame seca
+- Alga wakame fresca
+- Alga hijiki
+- Alga arame
+- Alga dulse
+- Alga dulse ahumada
+- Alga kelp
+- Alga agar-agar en tiras
+- Alga agar-agar en polvo
+- Espirulina en polvo
+- Chlorella en polvo
+- Algas marinas mezcladas
+- Alga nori tostada molida (furikake base)
+- Wakame granulado
+- Musgo de Irlanda (Irish moss / carragenina)
+- Alga de mar roja
+- Sea lettuce (lechuga de mar, ulva)
+- Alga cochayuyo (latinoamérica)
 
-## 1. VERDURAS Y HORTALIZAS
-
-### Raíces y tubérculos
+## Frutas, verduras y hortalizas
 - Patata
 - Boniato
 - Yuca (mandioca)
@@ -28,8 +237,6 @@
 - Olluco
 - Mashua
 - Arracacha
-
-### Alliums
 - Cebolla
 - Cebolleta
 - Chalota
@@ -39,8 +246,6 @@
 - Ajo negro
 - Ajo tierno (ajete)
 - Puerro
-
-### Tomates y pimientos
 - Tomate
 - Tomate cherry
 - Tomate seco
@@ -53,8 +258,6 @@
 - Ñora
 - Cubanelle (pimiento italiano)
 - Shishito
-
-### Chiles y pimientos picantes
 - Chile jalapeño
 - Chile serrano
 - Chile habanero
@@ -74,8 +277,6 @@
 - Scotch bonnet
 - Bird's eye (ojo de pájaro)
 - Fresno pepper
-
-### Calabazas y cucurbitáceas
 - Calabacín
 - Calabaza butternut
 - Calabaza hokkaido
@@ -85,8 +286,6 @@
 - Pepino japonés
 - Melón amargo (bitter melon)
 - Calabaza luffa
-
-### Coles y brasicáceas
 - Col verde (repollo)
 - Col lombarda
 - Col de Milán (savoy)
@@ -104,8 +303,6 @@
 - Rúcula
 - Berro
 - Mastuerzo
-
-### Lechugas y hojas verdes
 - Lechuga
 - Endivia
 - Radicchio
@@ -123,31 +320,20 @@
 - Borraja
 - Hoja de parra (vid)
 - Cardo
-
-### Espárragos
 - Espárrago verde
 - Espárrago blanco
 - Espárrago triguero
-
-### Alcachofas y cardos
 - Alcachofa
-- Cardo
 - Salsifí blanco
 - Escorzonera (salsifí negro)
-
-### Judías verdes y vainas
 - Judía verde
 - Judía amarilla (mantequera)
 - Guisante
 - Tirabeque
 - Haba verde
 - Edamame
-
-### Maíz fresco
 - Mazorca de maíz
 - Maíz baby
-
-### Otras verduras
 - Apio
 - Hinojo (bulbo)
 - Okra (quimbombó)
@@ -171,13 +357,6 @@
 - Flor de borraja
 - Flor de saúco
 - Flor de lavanda
-
-
----
-
-## 2. FRUTAS
-
-### Cítricos
 - Naranja
 - Naranja amarga (de Sevilla)
 - Mandarina
@@ -191,8 +370,6 @@
 - Bergamota
 - Calamansi
 - Limón Meyer
-
-### Frutas de hueso
 - Melocotón
 - Nectarina
 - Albaricoque
@@ -201,16 +378,12 @@
 - Cereza dulce
 - Guinda (cereza ácida)
 - Sloe (endrino)
-
-### Frutas de pepita
 - Manzana
 - Pera
 - Pera nashi (asiática)
 - Membrillo
 - Níspero japonés
 - Níspero europeo
-
-### Bayas y frutas del bosque
 - Fresa
 - Frambuesa
 - Mora
@@ -224,8 +397,6 @@
 - Baya de açaí
 - Physalis (alquequenje)
 - Higo chumbo (tuna)
-
-### Frutas tropicales
 - Mango
 - Papaya
 - Piña
@@ -259,29 +430,16 @@
 - Lucuma
 - Cacao (fruto fresco)
 - Noni
-
-### Uvas
 - Uva blanca de mesa
 - Uva negra de mesa
 - Uva pasa
-
-### Melones y sandías
 - Sandía
 - Melón
 - Melón cantalupo
-
-### Frutas mediterráneas singulares
 - Higo
 - Granada
 - Caqui
 - Almendra fresca (verde)
-
-
----
-
-## 3. HIERBAS AROMÁTICAS FRESCAS
-
-### Europeas / mediterráneas
 - Perejil liso
 - Perejil rizado
 - Cilantro
@@ -298,7 +456,6 @@
 - Eneldo fresco
 - Hinojo (frondas)
 - Perifollo
-- Cebollino
 - Ajedrea (savory)
 - Hisopo
 - Melisa (toronjil)
@@ -306,12 +463,9 @@
 - Laurel
 - Hierba luisa (cedrón)
 - Borraja (hojas)
-- Acedera
 - Agastache (hisopo anís)
 - Ruda
 - Poleo menta
-
-### Asiáticas
 - Lemongrass (hierba limón)
 - Hoja de kaffir lime
 - Hoja de curry
@@ -325,224 +479,95 @@
 - Hoja de aguacate
 - Albahaca sagrada (tulsi)
 - Hoja de moringa
-
-### Americanas / latinoamericanas
 - Huacatay (hierba negra)
 - Paico
 - Chipilin
 - Quelites
+- Champiñón
+- Champiñón portobello
+- Champiñón cremini
+- Seta de ostra (pleurotus)
+- Seta shiitake fresca
+- Seta enoki
+- Seta shimeji
+- Seta maitake
+- Seta nameko
+- Seta king oyster (trompeta real)
+- Seta lion's mane (melena de león)
+- Seta de paja (volvariella)
+- Seta matsutake
+- Boletus (porcini)
+- Níscalo (Lactarius deliciosus)
+- Rebozuelo (cantharellus)
+- Trompeta de la muerte
+- Morilla (morel)
+- Seta de cardo (Pleurotus eryngii)
+- Oronja (Amanita caesarea)
+- Senderuela
+- Parasol (Macrolepiota procera)
+- Boletus porcini seco
+- Seta shiitake seca
+- Oreja de Judas (mu-err / wood ear)
+- Trufa negra fresca
+- Trufa blanca fresca
+- Trufa de verano
+- Pasta de trufa
+- Koji (Aspergillus oryzae)
 
+## Charcutería
+- Jamón ibérico
+- Jamón serrano
+- Jamón york cocido
+- Paleta ibérica
+- Lomo embuchado
+- Chorizo ibérico
+- Chorizo fresco
+- Salchichón ibérico
+- Fuet
+- Longaniza
+- Sobrasada
+- Morcilla de Burgos
+- Morcilla de arroz
+- Butifarra blanca
+- Butifarra negra
+- Morcón
+- Cecina de vacuno
+- Farinato
+- Botelo gallego
+- Lacón curado
+- Panceta curada
+- Tocino salado
+- Chicharrón
+- Prosciutto crudo
+- Speck
+- Bresaola (vacuno curado)
+- Pancetta
+- Guanciale
+- Coppa (capocollo)
+- Mortadela
+- Salami
+- Nduja calabresa
+- Lardo di Colonnata
+- Cotechino
+- Jamón cocido francés
+- Rillettes de cerdo
+- Pâté de campagne
+- Saucisson sec
+- Boudin blanc
+- Boudin noir
+- Andouille
+- Merguez
+- Pepperoni
+- Kabanos polaco
+- Kielbasa polaca
+- Bratwurst
+- Frankfurter / salchicha de Frankfurt
+- Pastrami
+- Corned beef
+- Sucuk (embutido turco)
+- Loukanika (embutido griego)
 
----
-
-## 4. ESPECIAS Y CONDIMENTOS SECOS
-
-### Pimientas
-- Pimienta negra
-- Pimienta blanca
-- Pimienta verde (en salmuera)
-- Pimienta rosa (bayas rosadas)
-- Pimienta de Jamaica (allspice)
-- Pimienta de Sichuan
-- Pimienta larga (long pepper)
-- Grains of Paradise
-- Timut pepper
-
-### Especias dulces y cálidas
-- Canela de Ceilán
-- Canela Cassia
-- Clavo de olor
-- Nuez moscada
-- Macis
-- Anís estrellado
-- Anís verde (semillas)
-- Cardamomo verde
-- Cardamomo negro
-- Vainilla (vaina)
-- Azafrán
-
-### Especias picantes y ahumadas
-- Pimentón dulce
-- Pimentón picante
-- Pimentón ahumado (de La Vera)
-- Copos de chile (red pepper flakes)
-- Cayena molida
-- Chile ancho en polvo
-- Chile guajillo en polvo
-- Chile chipotle en polvo
-- Harissa en polvo
-
-### Semillas aromáticas
-- Comino
-- Cilantro en grano
-- Hinojo (semillas)
-- Anís (semillas)
-- Alcaravea (caraway)
-- Mostaza (semillas)
-- Nigella (kalonji)
-- Fenogreco (alholva)
-- Sésamo blanco
-- Sésamo negro
-- Semillas de amapola
-- Semillas de ajwan (ajowan)
-- Asafétida (hing)
-
-### Mezclas de especias
-- Curry en polvo
-- Garam masala
-- Panch phoron (5 especias bengalíes)
-- Chinese five spice (5 especias chinas)
-- Za'atar
-- Sumac (zumaque)
-- Baharat
-- Berbere etíope
-- Dukkah
-- Ras el hanout
-- Advieh iraní
-- Khmeli-suneli georgiano
-- Quatre épices francés
-- Herbes de Provence
-- Bouquet garni seco
-- Old bay seasoning
-- Cajun seasoning
-- Jerk seasoning
-- Tabil tunecino
-- Hawaij yemení
-- Chermoula seca
-
-### Especias de sabor y umami
-- Ajo en polvo
-- Cebolla en polvo
-- Tomate en polvo
-- Levadura nutricional
-- Glutamato monosódico
-- Sal de apio
-- Sal ahumada
-- Sal del Himalaya (rosa)
-- Sal negra (kala namak)
-- Sal en escamas (Maldon)
-- Flor de sal
-- Sal volcánica negra
-- Sal de trufa
-
-
----
-
-## 5. LEGUMBRES
-
-### Lentejas
-- Lenteja verde
-- Lenteja roja partida
-- Lenteja beluga (negra)
-- Lenteja de Puy
-- Lenteja pardina
-- Lenteja amarilla
-
-### Garbanzos
-- Garbanzo pedrosillano
-- Garbanzo Kabuli (grande)
-- Garbanzo negro
-- Harina de garbanzo
-
-### Judías y frijoles
-- Alubia blanca (cannellini)
-- Judión blanco
-- Alubia roja (kidney bean)
-- Alubia negra
-- Alubia pinta
-- Alubia borlotti
-- Alubia carilla (cowpea)
-- Alubia de Lima (mantequera)
-- Garrofó valenciano
-- Frijol bayo
-- Frijol peruano
-- Fabes asturianas
-- Mongetes catalanas
-- Guandul (pigeon pea)
-- Haba seca
-- Vigna (caupí)
-
-### Soja y derivados
-- Soja seca
-- Tofu firme
-- Tofu suave (silken)
-- Tofu ahumado
-- Tofu frito (aburage)
-- Tempeh
-- Natto
-- Miso blanco (shiro)
-- Miso rojo (aka)
-- Miso de cebada
-- Okara
-- Leche de soja
-- Soja texturizada (PVT)
-
-### Judías asiáticas
-- Judía mungo (mung bean)
-- Judía adzuki
-- Judía moth
-- Lablab (judía jacinto)
-
-### Otras legumbres
-- Altramuces
-- Almortas (titos)
-- Garrofa (algarroba)
-
-
----
-
-## 6. CEREALES Y GRANOS
-
-### Arroz
-- Arroz blanco de grano largo
-- Arroz basmati
-- Arroz jazmín (thai)
-- Arroz arborio
-- Arroz carnaroli
-- Arroz bomba (valenciano)
-- Arroz negro (venere)
-- Arroz rojo de Camarga
-- Arroz integral
-- Arroz glutinoso
-- Arroz parboilizado
-- Arroz salvaje (zizania)
-- Arroz para sushi
-
-### Trigos y derivados
-- Trigo duro (durum)
-- Trigo blando
-- Trigo sarraceno (alforfón)
-- Espelta
-- Kamut (khorasan)
-- Einkorn (escaña menor)
-- Freekeh (trigo verde ahumado)
-- Bulgur
-- Cuscús
-- Farro
-- Germen de trigo
-- Salvado de trigo
-
-### Otros granos
-- Avena en copos
-- Avena entera (groats)
-- Avena cortada (steel cut)
-- Cebada perlada
-- Cebada entera
-- Centeno en grano
-- Mijo
-- Sorgo
-- Teff
-- Quinoa
-- Amaranto (grano)
-- Maíz seco (pozolero)
-- Hominy (maíz nixtamalizado)
-- Masa harina
-
-
----
-
-## 7. HARINAS Y ALMIDONES
-
+## Panadería
 - Harina de trigo de fuerza
 - Harina de trigo todo uso
 - Harina integral de trigo
@@ -573,13 +598,93 @@
 - Pan rallado grueso
 - Panko (pan rallado japonés)
 - Harina de tempura
+- Hoja de platano para envolver
+- Hoja de maíz seca
+- Papel de arroz (bánh tráng)
+- Papel de soja (spring roll wrapper)
+- Pasta de wonton (láminas cuadradas)
+- Pasta de gyoza (láminas redondas)
+- Pasta de bao (masa levada)
+- Masa de samosa (pasta brick)
+- Pasta brick circular
+- Pasta filo en hojas
+- Pasta filo integral
+- Masa de empanada lista
+- Masa de pizza
+- Masa de focaccia congelada
+- Corteza de cerdo (chicharrón frito)
+- Skins de patata (pieles)
+- Hojas de nori tostadas en snack
+- Obulato (papel de almidón comestible)
+- Hoja de oro 23K comestible
+- Hoja de plata comestible
+- Edible glitter
+- Lustre metálico comestible
+- Perlas de azúcar
+- Virutas de coco tostadas
+- Garrapiñada de almendra
+- Almendra garrapiñada
+- Avellana garrapiñada
+- Preparado sin gluten para pan
+- Preparado sin gluten para bizcocho
+- Premezcla para masa de pizza sin gluten
+- Harina de patata (almidón)
+- Harina de sorgo
+- Harina de mijo
+- Harina de teff sin gluten
+- Harina de garbanzos sin gluten
+- Mix de harinas panificables sin gluten
+- Psyllium en polvo (fibra ligante)
+- Goma xantana sin gluten
+- Harina de arroz glutinoso sin gluten
 
-
----
-
-## 8. PASTA Y FIDEOS
-
-### Pasta italiana seca
+## Pasta, arroz y legumbres
+- Lenteja verde
+- Lenteja roja partida
+- Lenteja beluga (negra)
+- Lenteja de Puy
+- Lenteja pardina
+- Lenteja amarilla
+- Garbanzo pedrosillano
+- Garbanzo Kabuli (grande)
+- Garbanzo negro
+- Harina de garbanzo
+- Alubia blanca (cannellini)
+- Judión blanco
+- Alubia roja (kidney bean)
+- Alubia negra
+- Alubia pinta
+- Alubia borlotti
+- Alubia carilla (cowpea)
+- Alubia de Lima (mantequera)
+- Garrofó valenciano
+- Frijol bayo
+- Frijol peruano
+- Fabes asturianas
+- Mongetes catalanas
+- Guandul (pigeon pea)
+- Haba seca
+- Vigna (caupí)
+- Soja seca
+- Tofu firme
+- Tofu suave (silken)
+- Tofu ahumado
+- Tofu frito (aburage)
+- Tempeh
+- Natto
+- Miso blanco (shiro)
+- Miso rojo (aka)
+- Miso de cebada
+- Okara
+- Leche de soja
+- Soja texturizada (PVT)
+- Judía mungo (mung bean)
+- Judía adzuki
+- Judía moth
+- Lablab (judía jacinto)
+- Altramuces
+- Almortas (titos)
+- Garrofa (algarroba)
 - Espagueti
 - Vermicelli
 - Bucatini
@@ -605,16 +710,12 @@
 - Gemelli
 - Cavatappi
 - Lumache
-
-### Pasta italiana fresca
 - Pasta fresca al huevo
 - Ravioli frescos
 - Tortellini frescos
 - Cappelletti
 - Agnolotti
 - Pici
-
-### Pasta asiática
 - Fideos de arroz finos (vermicelli de arroz)
 - Fideos de arroz anchos
 - Fideos de vidrio (celofán)
@@ -632,8 +733,6 @@
 - Wonton wrappers
 - Gyoza wrappers
 - Spring roll wrappers
-
-### Pasta y masas españolas / latinoamericanas
 - Fideos finos (nº 0-2)
 - Fideos para fideuà (nº 4)
 - Macarrones
@@ -641,326 +740,7 @@
 - Tortilla de trigo
 - Masa de empanada
 
-
----
-
-## 9. CARNES DE VACUNO Y TERNERA
-
-- Solomillo de ternera
-- Entrecot
-- Chuletón
-- Lomo alto de vacuno
-- Lomo bajo de vacuno
-- Filete de ternera
-- Ternera para guisar (morcillo)
-- Carrillada de ternera
-- Falda de ternera
-- Costilla de ternera
-- Rabo de toro
-- Ossobuco (jarrete)
-- Carne picada de ternera
-- Lengua de ternera
-- Hígado de ternera
-- Riñones de ternera
-- Mollejas de ternera
-- Corazón de ternera
-- Callos de ternera
-- Morro de ternera
-- Oreja de ternera
-- Tuétano de vacuno
-- Redondo de ternera
-- Cadera de vacuno
-- Vacío (flank steak)
-- Entraña (skirt steak)
-- Vaca madurada
-
-
----
-
-## 10. CARNES DE CERDO
-
-- Lomo de cerdo
-- Solomillo de cerdo
-- Chuleta de cerdo
-- Costilla de cerdo
-- Panceta fresca
-- Papada de cerdo
-- Carrillada de cerdo
-- Paleta de cerdo
-- Pierna de cerdo
-- Manitas de cerdo
-- Oreja de cerdo
-- Rabo de cerdo
-- Hígado de cerdo
-- Asadura de cerdo
-- Carne picada de cerdo
-- Secreto ibérico
-- Presa ibérica
-- Pluma ibérica
-- Cochinillo (lechazo de cerdo)
-
-
----
-
-## 11. CARNES DE CORDERO Y CABRA
-
-- Pierna de cordero
-- Paletilla de cordero
-- Chuletilla de cordero
-- Costilla de cordero
-- Cuello de cordero
-- Carrillada de cordero
-- Hígado de cordero
-- Mollejas de cordero
-- Carne picada de cordero
-- Lechazo (cordero lechal)
-- Pierna de cabrito
-- Paletilla de cabrito
-
-
----
-
-## 12. AVES
-
-- Pechuga de pollo
-- Muslo de pollo
-- Contramuslo de pollo
-- Ala de pollo
-- Pollo entero
-- Hígado de pollo
-- Corazón de pollo
-- Molleja de pollo
-- Capón
-- Pechuga de pavo
-- Muslo de pavo
-- Pavo entero
-- Magret de pato
-- Muslo de pato
-- Hígado de pato
-- Foie gras de pato
-- Foie gras de oca
-- Pintada (gallina de Guinea)
-- Codorniz entera
-- Perdiz
-- Faisán
-- Pichón
-- Paloma torcaz
-- Becada
-- Avestruz (filete)
-
-
----
-
-## 13. CAZA
-
-- Jabalí
-- Venado (ciervo)
-- Corzo
-- Gamo
-- Liebre
-- Conejo de campo
-- Conejo de granja
-- Faisán salvaje
-- Perdiz salvaje
-- Becada salvaje
-
-
----
-
-## 14. EMBUTIDOS Y CHARCUTERÍA
-
-### Embutidos españoles
-- Jamón ibérico
-- Jamón serrano
-- Jamón york cocido
-- Paleta ibérica
-- Lomo embuchado
-- Chorizo ibérico
-- Chorizo fresco
-- Salchichón ibérico
-- Fuet
-- Longaniza
-- Sobrasada
-- Morcilla de Burgos
-- Morcilla de arroz
-- Butifarra blanca
-- Butifarra negra
-- Morcón
-- Cecina de vacuno
-- Farinato
-- Botelo gallego
-- Lacón curado
-- Panceta curada
-- Tocino salado
-- Chicharrón
-
-### Embutidos y charcutería italiana
-- Prosciutto crudo
-- Speck
-- Bresaola (vacuno curado)
-- Pancetta
-- Guanciale
-- Coppa (capocollo)
-- Mortadela
-- Salami
-- Nduja calabresa
-- Lardo di Colonnata
-- Cotechino
-
-### Embutidos y charcutería francesa
-- Jamón cocido francés
-- Rillettes de cerdo
-- Pâté de campagne
-- Saucisson sec
-- Boudin blanc
-- Boudin noir
-- Andouille
-- Merguez
-
-### Embutidos internacionales
-- Pepperoni
-- Kabanos polaco
-- Kielbasa polaca
-- Bratwurst
-- Frankfurter / salchicha de Frankfurt
-- Pastrami
-- Corned beef
-- Sucuk (embutido turco)
-- Loukanika (embutido griego)
-
-
----
-
-## 15. PESCADOS DE MAR
-
-### Pescados blancos
-- Merluza
-- Bacalao fresco
-- Bacalao salado
-- Eglefino (haddock)
-- Abadejo
-- Faneca
-- Lenguado
-- Gallo
-- Acedía
-- Rodaballo
-- Halibut (fletán)
-- Rape
-- Dorada
-- Lubina
-- Robalo
-- Mero
-- Cherne
-- Sama
-- Dentón
-- Besugo
-- Pargo
-- Salmonete
-- Mújol (lisa)
-- Corvina
-- Pez limón
-
-### Pescados azules
-- Salmón atlántico
-- Salmón del Pacífico
-- Trucha de mar
-- Trucha arco iris
-- Trucha común
-- Atún rojo
-- Atún de aleta amarilla
-- Atún listado (skipjack)
-- Bonito del Norte
-- Caballa
-- Jurel (chicharro)
-- Anchoa (boquerón fresco)
-- Sardina
-- Arenque
-- Espadín (sprat)
-
-### Pescados tropicales y otros
-- Mahimahi (dorado del Pacífico)
-- Wahoo
-- Barracuda
-- Pez espada
-- Tilapia
-- Pangasius (panga)
-- Pez gato (bagre)
-- Siluro europeo
-- Chileno (Patagonian toothfish)
-- John Dory (san pedro)
-
-### Pescados de río
-- Lucio
-- Lucioperca
-- Tenca
-- Carpa
-- Perca
-- Anguila
-- Lamprea
-- Esturión
-- Trucha fario
-
-
----
-
-## 16. MARISCOS Y CRUSTÁCEOS
-
-- Gamba blanca del Mediterráneo
-- Gamba roja
-- Camarón
-- Quisquilla
-- Langostino
-- Esquilas (galera / mantis shrimp)
-- Bogavante
-- Langosta
-- Cigala
-- Centollo
-- Buey de mar
-- Nécora
-- Cangrejo azul
-- Cangrejo real de Alaska
-- Percebe
-
-
----
-
-## 17. MOLUSCOS
-
-### Bivalvos
-- Mejillón
-- Almeja fina
-- Almeja japónica (Manila)
-- Chirla
-- Berberecho
-- Navaja (razor clam)
-- Ostra
-- Vieira
-- Zamburiña
-- Tellina (coquina)
-
-### Cefalópodos
-- Pulpo
-- Sepia
-- Calamar
-- Chipirón
-- Pota
-- Jibia
-
-### Gasterópodos y equinodermos
-- Caracol de tierra
-- Bígaro
-- Lapa
-- Oreja de mar (abulón)
-- Cañaílla (murex)
-- Erizo de mar (huevas / uni)
-- Pepino de mar (holoturia)
-
-
----
-
-## 18. LÁCTEOS
-
-### Leches
+## Huevos y Lácteos
 - Leche entera de vaca
 - Leche semidesnatada
 - Leche desnatada
@@ -970,8 +750,6 @@
 - Leche evaporada
 - Leche condensada
 - Leche en polvo
-
-### Natas y cremas
 - Nata para montar (35% m.g.)
 - Nata para cocinar (18% m.g.)
 - Creme fraîche
@@ -980,28 +758,17 @@
 - Fromage frais
 - Quark
 - Labneh (yogur drenado)
-
-### Mantequillas y grasas lácteas
 - Mantequilla sin sal
 - Mantequilla con sal
 - Ghee (mantequilla clarificada)
 - Manteca de cerdo
 - Manteca de pato
-
-### Yogures y fermentados
 - Yogur natural
 - Yogur griego
 - Yogur de cabra
 - Kéfir de leche
 - Suero de leche (buttermilk)
 - Skyr islandés
-
-
----
-
-## 19. QUESOS
-
-### Quesos españoles
 - Manchego
 - Zamorano
 - Roncal
@@ -1023,8 +790,6 @@
 - Queso de Cantabria
 - Queso de Murcia al vino
 - Queso de cabra fresco
-
-### Quesos italianos
 - Parmigiano-Reggiano (parmesano)
 - Grana Padano
 - Pecorino Romano
@@ -1044,8 +809,6 @@
 - Scamorza
 - Robiola
 - Stracchino
-
-### Quesos franceses
 - Brie
 - Camembert
 - Roquefort
@@ -1064,28 +827,20 @@
 - Sainte-Maure de Touraine
 - Crottin de Chavignol
 - Fromage blanc
-
-### Quesos suizos y centroeuropeos
 - Emmental
 - Appenzeller
 - Raclette
 - Sbrinz
 - Tête de Moine
-
-### Quesos nórdicos y holandeses
 - Jarlsberg
 - Gouda
 - Edam
 - Havarti
 - Mimolette
-
-### Quesos británicos
 - Cheddar
 - Stilton
 - Red Leicester
 - Wensleydale
-
-### Quesos de Oriente Medio y Mediterráneo oriental
 - Feta DOP
 - Halloumi
 - Manouri
@@ -1093,12 +848,6 @@
 - Akawi
 - Nabulsi
 - Paneer indio
-
-
----
-
-## 20. HUEVOS Y DERIVADOS
-
 - Huevo de gallina
 - Huevo ecológico
 - Huevo de pato
@@ -1116,11 +865,233 @@
 - Bottarga de mújol
 - Bottarga de atún
 
+## Conservas, caldos y cremas
+- Tomate triturado en lata
+- Tomate pelado entero (San Marzano)
+- Tomate cherry en lata
+- Tomate concentrado (doble)
+- Tomate concentrado (triple)
+- Tomate seco en aceite
+- Tomate en polvo
+- Puré de tomate
+- Anchoa en aceite (filetes)
+- Anchoa en salazón
+- Sardina en aceite
+- Sardina en tomate
+- Caballa / Atún en aceite de oliva
+- Atún en aceite de girasol
+- Atún al natural
+- Bonito del Norte en aceite
+- Melva en aceite
+- Bacalao en aceite
+- Salmón ahumado
+- Arenque ahumado (kipper)
+- Arenque en escabeche
+- Mejillones en escabeche
+- Mejillones al natural
+- Berberechos al natural
+- Almeja al natural
+- Navaja al natural
+- Ostra ahumada
+- Ostra al natural
+- Caviar (Beluga)
+- Caviar (Osetra)
+- Caviar (Sevruga)
+- Huevas de salmón (ikura)
+- Huevas de trucha
+- Huevas de lumpo negras
+- Huevas de lumpo rojas
+- Huevas de capelin (masago)
+- Polvo de katsuobushi (bonito seco)
+- Bottarga de mújol rallada
+- Mojama de atún
+- Pepinillo en vinagre
+- Pepinillo cornichon
+- Cebolleta en vinagre
+- Coliflor en escabeche
+- Zanahoria en escabeche
+- Alcachofas en escabeche
+- Pimientos en vinagre
+- Guindillas en vinagre
+- Aceitunas marinadas
+- Alcaparras en sal
+- Alcaparras en vinagre
+- Alcaparrones en vinagre
+- Jengibre encurtido (gari)
+- Ciruela umeboshi
+- Encurtido daikon (takuan)
+- Encurtido de col china (tsukemono)
+- Kimchi de col (baechu kimchi)
+- Kimchi de rábano (kkakdugi)
+- Kimchi de pepino
+- Kimchi de rábano en tiras
+- Chucrut (Sauerkraut)
+- Corteza de sandía encurtida
+- Mostarda de frutta (italiana)
+- Giardiniera italiana
+- Torshi (persa)
+- Mutabal con pickles
+- Pickled green tomatoes
+- Pickled jalapeños
+- Pasta de miso blanca (shiro miso)
+- Pasta de miso roja (aka miso)
+- Pasta de miso de cebada
+- Pasta de miso de arroz
+- Doenjang (pasta de soja fermentada coreana)
+- Gochujang (pasta de chile coreano)
+- Dashi concentrado (líquido)
+- Dashi en polvo (kombu y bonito mix)
+- Kombu dashi
+- Shiitake dashi
+- Salsa de soja tamari fermentada naturalmente
+- Nam prik (salsa fermentada tailandesa)
+- Prahok (pasta fermentada de pescado cambodiana)
+- Bagoong (pasta de gambas filipina)
+- Shrimp paste (pasta de gambas indonesia)
+- Tuk prahok
+- Miso de garbanzos
+- Miso de lentejas
+- Natto (soja fermentada)
+- Tempeh
+- Injera (masa fermentada de teff) starter
+- Salsa de soja harusame
+- Jeotgal (pescado y marisco fermentado coreano)
+- Koji cultivo (Aspergillus oryzae)
+- Amazake (sake dulce no alcohólico de arroz)
+- Kefir granos
+- Masa madre de centeno
+- Kombucha
+- Tepache (fermentado de maíz)
+- Agua de tamarindo fermentada
+- Garum histórico (colatura di alici)
+- Colatura di alici
+- Agua mineral sin gas
+- Agua mineral con gas
+- Agua de coco natural
+- Agua de pepino
+- Agua de azahar
+- Agua de rosas
+- Agua de kewra
+- Agua de florida (culto)
+- Caldo kombu
+- Caldo dashi
+- Caldo de miso
+- Caldo de pollo concentrado
+- Caldo de verduras concentrado
+- Fondo oscuro de buey
+- Caldo de marisco concentrado
+- Caldo de colágeno (bone broth)
+- Caldo de pies de cerdo
+- Agua de tomate (consomé frío)
+- Zumo de aloe vera
+- Mermelada de naranja amarga
+- Mermelada de fresa
+- Mermelada de frambuesa
+- Mermelada de arándano
+- Mermelada de melocotón
+- Mermelada de albaricoque
+- Mermelada de ciruela
+- Mermelada de higo
+- Mermelada de membrillo
+- Jalea de grosella roja
+- Jalea de manzana
+- Jalea de menta
+- Confitura de cereza
+- Curd de limón (lemon curd)
+- Curd de naranja
+- Curd de maracuyá
+- Pasta de membrillo
+- Dulce de leche (caramelo de leche)
+- Cajeta (dulce de leche mexicano)
+- Manjar blanco (latinoamérica)
+- Mermelada de pimiento rojo
+- Mermelada de tomate
+- Mermelada de cebolla caramelizada
+- Compota de pera y jengibre
+- Compota de manzana
+- Chutney de mango
+- Chutney de cebolla
+- Chutney de tomate verde
+- Chutney de albaricoque
+- Chutney de arándano rojo (cranberry)
 
----
-
-## 21. ACEITES Y GRASAS
-
+## Salsas, especias y aceites
+- Pimienta negra
+- Pimienta blanca
+- Pimienta verde (en salmuera)
+- Pimienta rosa (bayas rosadas)
+- Pimienta de Jamaica (allspice)
+- Pimienta de Sichuan
+- Pimienta larga (long pepper)
+- Grains of Paradise
+- Timut pepper
+- Canela de Ceilán
+- Canela Cassia
+- Clavo de olor
+- Nuez moscada
+- Macis
+- Anís estrellado
+- Anís verde (semillas)
+- Cardamomo verde
+- Cardamomo negro
+- Vainilla (vaina)
+- Azafrán
+- Pimentón dulce
+- Pimentón picante
+- Pimentón ahumado (de La Vera)
+- Copos de chile (red pepper flakes)
+- Cayena molida
+- Chile ancho en polvo
+- Chile guajillo en polvo
+- Chile chipotle en polvo
+- Harissa en polvo
+- Comino
+- Cilantro en grano
+- Hinojo (semillas)
+- Anís (semillas)
+- Alcaravea (caraway)
+- Mostaza (semillas)
+- Nigella (kalonji)
+- Fenogreco (alholva)
+- Sésamo blanco
+- Sésamo negro
+- Semillas de amapola
+- Semillas de ajwan (ajowan)
+- Asafétida (hing)
+- Curry en polvo
+- Garam masala
+- Panch phoron (5 especias bengalíes)
+- Chinese five spice (5 especias chinas)
+- Za'atar
+- Sumac (zumaque)
+- Baharat
+- Berbere etíope
+- Dukkah
+- Ras el hanout
+- Advieh iraní
+- Khmeli-suneli georgiano
+- Quatre épices francés
+- Herbes de Provence
+- Bouquet garni seco
+- Old bay seasoning
+- Cajun seasoning
+- Jerk seasoning
+- Tabil tunecino
+- Hawaij yemení
+- Chermoula seca
+- Ajo en polvo
+- Cebolla en polvo
+- Tomate en polvo
+- Levadura nutricional
+- Glutamato monosódico
+- Sal de apio
+- Sal ahumada
+- Sal del Himalaya (rosa)
+- Sal negra (kala namak)
+- Sal en escamas (Maldon)
+- Flor de sal
+- Sal volcánica negra
+- Sal de trufa
 - Aceite de oliva virgen extra (AOVE)
 - Aceite de oliva virgen
 - Aceite de orujo de oliva
@@ -1152,12 +1123,6 @@
 - Manteca de pato
 - Grasa de pollo (schmaltz)
 - Sebo de ternera
-
-
----
-
-## 22. VINAGRES Y ÁCIDOS CULINARIOS
-
 - Vinagre de vino tinto
 - Vinagre de vino blanco
 - Vinagre de Jerez
@@ -1175,12 +1140,6 @@
 - Ácido tartárico en polvo
 - Tamarindo en agua (jugo)
 - Colatura di alici (garum italiano)
-
----
-
-## 23. SALSAS, ALIÑOS Y CONDIMENTOS
-
-### Salsas básicas y fondos
 - Caldo de pollo
 - Caldo de ternera
 - Fondo oscuro de ternera
@@ -1194,8 +1153,6 @@
 - Salsa bordelaise
 - Salsa chasseur
 - Salsa picada (catalana)
-
-### Salsas frías / emulsiones
 - Mayonesa
 - Alioli
 - Salsa tártara
@@ -1214,8 +1171,6 @@
 - Salsa roja mexicana
 - Mole
 - Salsa macha
-
-### Salsas orientales
 - Salsa de soja
 - Salsa de soja tamari
 - Salsa ponzu
@@ -1233,15 +1188,11 @@
 - Nam prik pao (pasta de chile tostada)
 - Kecap manis (soja dulce indonesia)
 - Prahok (pasta fermentada cambodiana)
-
-### Salsas de pasta y tomate
 - Tomate frito
 - Passata di pomodoro
 - Salsa marinara
 - Salsa arrabbiata
 - Salsa puttanesca
-
-### Mostazas y condimentos
 - Mostaza de Dijon
 - Mostaza de grano entero
 - Mostaza inglesa
@@ -1251,8 +1202,6 @@
 - Tabasco
 - BBQ sauce americana
 - Buffalo sauce
-
-### Pastas, dips y untables
 - Hummus
 - Baba ganoush
 - Mutabal (berenjena con tahini)
@@ -1267,8 +1216,6 @@
 - Brandade de bacalao
 - Pâté de campaña
 - Foie gras en terrina
-
-### Salsas de Oriente Medio y Norte de África
 - Harissa
 - Chermoula
 - Salsa de yogur
@@ -1278,11 +1225,133 @@
 - Zhug (salsa yemení de chile)
 - Toum (ajo cremoso libanés)
 - Melaza de granada (dibs rumman)
+- Za'atar seco (mezcla)
+- Sumac (zumaque) en polvo
+- Loomi (lima negra / limone) seco
+- Pétalos de rosa secos
+- Agua de rosas
+- Agua de azahar
+- Baharat turco/árabe
+- Ras el hanout marroquí
+- Chermoula condimento seco
+- Tabel tunecino
+- Dukkah egipcio
+- Anardana (granada seca en polvo)
+- Tamarindo en bloque árabe
+- Pasta de dátil
+- Jarabe de dátil
+- Tahini (pasta de sésamo)
+- Halva de sésamo
+- Halva de pistachios
+- Mastic (resina de mirto)
+- Mastic chips (goma de Quíos)
+- Mahlab (semilla de cereza persa)
+- Cúrcuma iraní (para polo)
+- Carvi (comino negro tunecino)
+- Rose harissa
+- Harissa roja picante
+- Harissa verde
+- Zhug rojo (salsa yemení)
+- Zhug verde
+- Toum (pasta de ajo libanesa)
+- Labne (yogur drenado libanés)
+- Shanklish (queso sirius curado)
+- Akkawi fresco
+- Nabulsi queso
+- Bulgur fino
+- Bulgur grueso
+- Farro de Oriente Medio
+- Couscous israelí (ptitim)
+- Freekeh
+- Maftoul (cuscús palestino)
+- Brik hoja de (para pastela)
+- Filo (pasta philo) hojas
+- Waraq einab (hojas de parra)
+- Waraq dawali
+- Azafrán (amarillo / naranja)
+- Cúrcuma (amarillo)
+- Pimentón dulce (rojo anaranjado)
+- Pimentón ahumado (rojo oscuro)
+- Remolacha en polvo (rojo-morado)
+- Espinaca en polvo (verde)
+- Matcha en polvo (verde)
+- Cúrcuma en pasta
+- Carbón activado vegetal (negro)
+- Tinta de calamar / sepia (negro)
+- Flor de mariposa (butterfly pea) azul
+- Hibisco en polvo (rosa / morado)
+- Flor de Jamaica (rojo oscuro)
+- Curcumina oleorresina
+- Paprika oleorresina
+- Beta-caroteno natural
+- Annatto (bixina / norbixina)
+- Chlorofila de espinaca
+- Cochinilla (E120) - carmín
+- Extracto de grosella
+- Extracto de arándano
+- Extracto de zanahoria negra
+- Extracto de col lombarda
+- Extracto natural de almendra amarga
+- Esencia de rosa
+- Esencia de naranja
+- Esencia de menta
+- Extracto de café (café concentrado)
+- Polvo de café (espresso molido fino)
+- Extracto de malta
+- Miso en pasta dulce
+- Vinagre de malta oscuro
+- Aceite esencial de bergamota (grado culinario)
+- Aceite esencial de limón (grado culinario)
+- Aceite esencial de naranja (grado culinario)
+- Aceite esencial de romero (grado culinario)
+- Extracto de lavanda
+- Jarabe simple de lavanda
+- Jarabe simple de menta
+- Jarabe simple de jengibre
+- Jarabe simple de vainilla
 
----
+## Cereales y galletas
+- Arroz blanco de grano largo
+- Arroz basmati
+- Arroz jazmín (thai)
+- Arroz arborio
+- Arroz carnaroli
+- Arroz bomba (valenciano)
+- Arroz negro (venere)
+- Arroz rojo de Camarga
+- Arroz integral
+- Arroz glutinoso
+- Arroz parboilizado
+- Arroz salvaje (zizania)
+- Arroz para sushi
+- Trigo duro (durum)
+- Trigo blando
+- Trigo sarraceno (alforfón)
+- Espelta
+- Kamut (khorasan)
+- Einkorn (escaña menor)
+- Freekeh (trigo verde ahumado)
+- Bulgur
+- Cuscús
+- Farro
+- Germen de trigo
+- Salvado de trigo
+- Avena en copos
+- Avena entera (groats)
+- Avena cortada (steel cut)
+- Cebada perlada
+- Cebada entera
+- Centeno en grano
+- Mijo
+- Sorgo
+- Teff
+- Quinoa
+- Amaranto (grano)
+- Maíz seco (pozolero)
+- Hominy (maíz nixtamalizado)
+- Masa harina
 
-## 24. FRUTOS SECOS
-
+## Snacks
 - Almendra
 - Almendra fileteada
 - Almendra molida
@@ -1302,11 +1371,6 @@
 - Harina de castaña
 - Coco rallado
 - Bellota comestible
-
----
-
-## 25. SEMILLAS
-
 - Sésamo blanco
 - Sésamo negro
 - Semilla de girasol
@@ -1317,51 +1381,7 @@
 - Semilla de cáñamo
 - Psyllium (semilla de llantén)
 
----
-
-## 26. SETAS Y HONGOS
-
-### Setas cultivadas
-- Champiñón
-- Champiñón portobello
-- Champiñón cremini
-- Seta de ostra (pleurotus)
-- Seta shiitake fresca
-- Seta enoki
-- Seta shimeji
-- Seta maitake
-- Seta nameko
-- Seta king oyster (trompeta real)
-- Seta lion's mane (melena de león)
-- Seta de paja (volvariella)
-- Seta matsutake
-
-### Setas silvestres
-- Boletus (porcini)
-- Níscalo (Lactarius deliciosus)
-- Rebozuelo (cantharellus)
-- Trompeta de la muerte
-- Morilla (morel)
-- Seta de cardo (Pleurotus eryngii)
-- Oronja (Amanita caesarea)
-- Senderuela
-- Parasol (Macrolepiota procera)
-
-### Hongos secos y procesados
-- Boletus porcini seco
-- Seta shiitake seca
-- Oreja de Judas (mu-err / wood ear)
-- Trufa negra fresca
-- Trufa blanca fresca
-- Trufa de verano
-- Pasta de trufa
-- Koji (Aspergillus oryzae)
-
----
-
-## 27. AZÚCARES, MIELES Y EDULCORANTES
-
-### Azúcares
+## Otros
 - Azúcar blanco
 - Azúcar glas
 - Azúcar moreno
@@ -1374,8 +1394,6 @@
 - Glucosa líquida
 - Dextrosa
 - Isomalt
-
-### Mieles
 - Miel de acacia
 - Miel de azahar
 - Miel de tomillo
@@ -1384,8 +1402,6 @@
 - Miel de milflores
 - Miel de manuka
 - Miel cruda
-
-### Jarabes y melazas
 - Jarabe de arce (maple syrup)
 - Jarabe de agave
 - Jarabe de maíz (corn syrup)
@@ -1396,20 +1412,12 @@
 - Sirope de coco
 - Arrope (mosto cocido)
 - Vincotto
-
-### Edulcorantes intensivos y alternativos
 - Stevia
 - Eritritol
 - Xilitol
 - Sucralosa
 - Aspartamo
 - Inulina
-
----
-
-## 28. CHOCOLATES, CACAO Y VAINILLA
-
-### Cacaos y chocolates
 - Cacao en polvo
 - Cacao alcalino (holandés)
 - Pasta de cacao (licor)
@@ -1424,17 +1432,10 @@
 - Chocolate Blond (caramelizado)
 - Chips de chocolate
 - Pailleté feuilletine (chocolate arenoso)
-
-### Vainilla
 - Vaina de vainilla
 - Vainilla en polvo
 - Extracto de vainilla
 - Pasta de vainilla
-
----
-
-## 29. BEBIDAS Y ALCOHOLES PARA COCINAR
-
 - Vino tinto seco
 - Vino blanco seco
 - Vino blanco dulce (Sauternes)
@@ -1477,12 +1478,6 @@
 - Cerveza de trigo (weizen)
 - Sidra natural seca
 - Sidra dulce
-
----
-
-## 30. GELIFICANTES, ESPESANTES Y ADITIVOS CULINARIOS
-
-### Gelificantes
 - Agar-agar (E406)
 - Gelatina en hojas (animal)
 - Gelatina en polvo
@@ -1495,8 +1490,6 @@
 - Geogelificante (gellan gum)
 - Konjac (glucomanano)
 - Metilcelulosa (MC)
-
-### Espesantes
 - Almidón de maíz (maicena)
 - Almidón de patata
 - Almidón de tapioca
@@ -1512,11 +1505,8 @@
 - Goma gellan (E418)
 - Goma de algarrobo
 - Hydroxypropyl methylcellulose (HPMC)
-- Inulina
 - Maltodextrina
 - Tagatosa espesante
-
-### Emulsionantes y estabilizantes
 - Lecitina de soja (E322)
 - Lecitina de girasol
 - Mono y diglicéridos (E471)
@@ -1524,8 +1514,6 @@
 - Carboximetilcelulosa sódica (CMC E466)
 - Yema de huevo (emulsionante natural)
 - Mostaza (emulsionante natural)
-
-### Gasificantes y levaduras
 - Levadura fresca prensada
 - Levadura seca activa
 - Levadura instantánea de acción rápida
@@ -1538,8 +1526,6 @@
 - Masa madre natural (starter)
 - Masa madre de centeno
 - Masa madre de espelta
-
-### Aditivos especiales de cocina de vanguardia
 - Esferificantes (alginato + calcio)
 - Cloruro cálcico (E509)
 - Lecitina en polvo (para espumas)
@@ -1551,149 +1537,6 @@
 - Gelatina vegetal sin sabor
 - Kappa Carragenina en polvo
 - Alginato de sodio pharma grade
-
----
-
-## 31. CONSERVAS, ENCURTIDOS Y FERMENTADOS
-
-### Conservas de tomate
-- Tomate triturado en lata
-- Tomate pelado entero (San Marzano)
-- Tomate cherry en lata
-- Tomate concentrado (doble)
-- Tomate concentrado (triple)
-- Tomate seco en aceite
-- Tomate en polvo
-- Puré de tomate
-
-### Conservas de pescado
-- Anchoa en aceite (filetes)
-- Anchoa en salazón
-- Sardina en aceite
-- Sardina en tomate
-- Caballa / Atún en aceite de oliva
-- Atún en aceite de girasol
-- Atún al natural
-- Bonito del Norte en aceite
-- Melva en aceite
-- Bacalao en aceite
-- Salmón ahumado
-- Arenque ahumado (kipper)
-- Arenque en escabeche
-- Mejillones en escabeche
-- Mejillones al natural
-- Berberechos al natural
-- Almeja al natural
-- Navaja al natural
-- Ostra ahumada
-- Ostra al natural
-- Caviar (Beluga)
-- Caviar (Osetra)
-- Caviar (Sevruga)
-- Huevas de salmón (ikura)
-- Huevas de trucha
-- Huevas de lumpo negras
-- Huevas de lumpo rojas
-- Huevas de capelin (masago)
-- Polvo de katsuobushi (bonito seco)
-- Bottarga de mújol rallada
-- Mojama de atún
-
-### Encurtidos
-- Pepinillo en vinagre
-- Pepinillo cornichon
-- Cebolleta en vinagre
-- Coliflor en escabeche
-- Zanahoria en escabeche
-- Alcachofas en escabeche
-- Pimientos en vinagre
-- Guindillas en vinagre
-- Aceitunas marinadas
-- Alcaparras en sal
-- Alcaparras en vinagre
-- Alcaparrones en vinagre
-- Jengibre encurtido (gari)
-- Ciruela umeboshi
-- Encurtido daikon (takuan)
-- Encurtido de col china (tsukemono)
-- Kimchi de col (baechu kimchi)
-- Kimchi de rábano (kkakdugi)
-- Kimchi de pepino
-- Kimchi de rábano en tiras
-- Chucrut (Sauerkraut)
-- Corteza de sandía encurtida
-- Mostarda de frutta (italiana)
-- Giardiniera italiana
-- Torshi (persa)
-- Mutabal con pickles
-- Pickled green tomatoes
-- Pickled jalapeños
-
-### Fermentados y productos umami
-- Pasta de miso blanca (shiro miso)
-- Pasta de miso roja (aka miso)
-- Pasta de miso de cebada
-- Pasta de miso de arroz
-- Doenjang (pasta de soja fermentada coreana)
-- Gochujang (pasta de chile coreano)
-- Dashi concentrado (líquido)
-- Dashi en polvo (kombu y bonito mix)
-- Kombu dashi
-- Shiitake dashi
-- Salsa de soja tamari fermentada naturalmente
-- Nam prik (salsa fermentada tailandesa)
-- Prahok (pasta fermentada de pescado cambodiana)
-- Bagoong (pasta de gambas filipina)
-- Shrimp paste (pasta de gambas indonesia)
-- Tuk prahok
-- Miso de garbanzos
-- Miso de lentejas
-- Natto (soja fermentada)
-- Tempeh
-- Injera (masa fermentada de teff) starter
-- Salsa de soja harusame
-- Jeotgal (pescado y marisco fermentado coreano)
-- Koji cultivo (Aspergillus oryzae)
-- Amazake (sake dulce no alcohólico de arroz)
-- Kefir granos
-- Masa madre de centeno
-- Kombucha
-- Tepache (fermentado de maíz)
-- Agua de tamarindo fermentada
-- Garum histórico (colatura di alici)
-- Colatura di alici
-
----
-
-## 32. ALGAS Y PRODUCTOS MARINOS
-
-- Alga nori (para sushi)
-- Alga nori en snack
-- Alga kombu seca
-- Alga wakame seca
-- Alga wakame fresca
-- Alga hijiki
-- Alga arame
-- Alga dulse
-- Alga dulse ahumada
-- Alga kelp
-- Alga agar-agar en tiras
-- Alga agar-agar en polvo
-- Espirulina en polvo
-- Chlorella en polvo
-- Algas marinas mezcladas
-- Alga nori tostada molida (furikake base)
-- Wakame granulado
-- Musgo de Irlanda (Irish moss / carragenina)
-- Alga de mar roja
-- Sea lettuce (lechuga de mar, ulva)
-- Alga cochayuyo (latinoamérica)
-
----
-
-## 33. INGREDIENTES DE COCINA ASIÁTICA
-
-### Ingredientes chinos
 - Pasta de soja negra fermentada (douchi)
 - Pasta de soja amarilla (tianmianjiang)
 - Doubanjiang (pasta picante de habas Pixian)
@@ -1705,7 +1548,6 @@
 - Fermented tofu (tofu fermentado rojo)
 - White fermented tofu (tofu fermentado blanco)
 - Vinagre de arroz negro Chinkiang
-- Vino de arroz Shaoxing
 - Vino de arroz Huangjiu
 - Salsa de chile Lee Kum Kee
 - La-yu (aceite de chile chino)
@@ -1716,8 +1558,6 @@
 - Tofu prensado (5 especias)
 - Konjac en bloque
 - Konjac en tiras
-
-### Ingredientes japoneses
 - Dashi en polvo (hon dashi)
 - Mirin hon-mirin
 - Sake de cocina (ryorishu)
@@ -1749,8 +1589,6 @@
 - Kizami nori (nori en juliana)
 - Toasted sesame seeds
 - Toasted black sesame seeds
-
-### Ingredientes coreanos
 - Gochugaru (copos de chile rojo coreano)
 - Gochujang (pasta de chile picante)
 - Doenjang
@@ -1765,8 +1603,6 @@
 - Piel de patata coreana (gamja-jeon mix)
 - Tempura mix
 - Okonomiyaki mix
-
-### Ingredientes del sureste asiático
 - Leche de coco entera
 - Leche de coco light
 - Crema de coco (coconut cream)
@@ -1799,8 +1635,6 @@
 - Tapioca en perlas
 - Tapioca en polvo
 - Pandan en pasta
-
-### Ingredientes del sur de Asia (India y region)
 - Ghee (mantequilla clarificada india)
 - Paneer indio
 - Yogur Dahi
@@ -1829,11 +1663,6 @@
 - Moong dal (judía mungo)
 - Rajma (alubia roja india)
 - Chickpea black (kala chana)
-
----
-
-## 34. INGREDIENTES LATINOAMERICANOS
-
 - Achiote (bija) semillas
 - Pasta de achiote
 - Epazote seco
@@ -1894,64 +1723,6 @@
 - Pitahaya amarilla
 - Carambola
 - Babaco fresco
-
----
-
-## 35. INGREDIENTES DE ORIENTE MEDIO Y NORTE DE ÁFRICA
-
-- Za'atar seco (mezcla)
-- Sumac (zumaque) en polvo
-- Loomi (lima negra / limone) seco
-- Pétalos de rosa secos
-- Agua de rosas
-- Agua de azahar
-- Baharat turco/árabe
-- Ras el hanout marroquí
-- Chermoula condimento seco
-- Tabel tunecino
-- Dukkah egipcio
-- Hawaij yemení
-- Advieh iraní
-- Khmeli-suneli georgiano
-- Anardana (granada seca en polvo)
-- Tamarindo en bloque árabe
-- Pasta de dátil
-- Melaza de granada (dibs rumman)
-- Jarabe de dátil
-- Tahini (pasta de sésamo)
-- Halva de sésamo
-- Halva de pistachios
-- Mastic (resina de mirto)
-- Mastic chips (goma de Quíos)
-- Mahlab (semilla de cereza persa)
-- Cúrcuma iraní (para polo)
-- Carvi (comino negro tunecino)
-- Rose harissa
-- Harissa roja picante
-- Harissa verde
-- Amba (mango encurtido israelí)
-- Zhug rojo (salsa yemení)
-- Zhug verde
-- Toum (pasta de ajo libanesa)
-- Labne (yogur drenado libanés)
-- Shanklish (queso sirius curado)
-- Akkawi fresco
-- Nabulsi queso
-- Bulgur fino
-- Bulgur grueso
-- Farro de Oriente Medio
-- Couscous israelí (ptitim)
-- Freekeh
-- Maftoul (cuscús palestino)
-- Brik hoja de (para pastela)
-- Filo (pasta philo) hojas
-- Waraq einab (hojas de parra)
-- Waraq dawali
-
----
-
-## 36. INGREDIENTES AFRICANOS SUBSAHARIANOS
-
 - Fufú (harina de ñame)
 - Ugali (harina de maíz gruesa)
 - Gari (mandioca fermentada en granos)
@@ -1978,11 +1749,6 @@
 - Bambara groundnut
 - Hibiscus seco (bissap)
 - Karkadé (Jamaica seco)
-
----
-
-## 37. INGREDIENTES DEL CARIBE
-
 - Ron blanco caribeño
 - Ron añejo caribeño
 - Jerk seasoning
@@ -2005,11 +1771,6 @@
 - Pimienta de Jamaica entera
 - Curry caribeño (curry powder)
 - Annatto seeds (achiote)
-
----
-
-## 38. INGREDIENTES DE COCINA JAPONESA ESPECIAL
-
 - Kombu seco Rishiri
 - Kombu seco Rausu
 - Kombu seco Ma kombu
@@ -2037,11 +1798,6 @@
 - Nanami togarashi premium
 - Black sesame paste
 - Gomashio (sal de sésamo)
-
----
-
-## 39. INGREDIENTES DE COCINA ITALIANA ESPECIAL
-
 - Guanciale IGP
 - Lardo di Colonnata IGP
 - Colatura di alici (garum italiano)
@@ -2074,161 +1830,32 @@
 - Sale marino di Trapani
 - Pistacchio di Bronte
 
----
+## Restricciones alimentarias comunes
+- Sin gluten
+- Sin lactosa
+- Sin frutos secos
+- Sin cacahuetes
+- Sin huevo
+- Sin soja
+- Sin pescado
+- Sin marisco
+- Sin sésamo
+- Sin mostaza
+- Sin apio
+- Sin sulfitos
+- Sin altramuces
+- Sin moluscos
+- Sin carne de cerdo
+- Halal
+- Kosher
+- Vegetariana
+- Vegana
+- Pescetariana
+- Flexitariana
+- Baja en sodio
+- Baja en azúcar
+- Baja en grasas saturadas
+- Keto
+- Paleo
+- Diabética
 
-## 40. COLORANTES NATURALES PARA COCINA
-
-- Azafrán (amarillo / naranja)
-- Cúrcuma (amarillo)
-- Pimentón dulce (rojo anaranjado)
-- Pimentón ahumado (rojo oscuro)
-- Remolacha en polvo (rojo-morado)
-- Espinaca en polvo (verde)
-- Matcha en polvo (verde)
-- Cúrcuma en pasta
-- Carbón activado vegetal (negro)
-- Tinta de calamar / sepia (negro)
-- Flor de mariposa (butterfly pea) azul
-- Hibisco en polvo (rosa / morado)
-- Flor de Jamaica (rojo oscuro)
-- Curcumina oleorresina
-- Paprika oleorresina
-- Beta-caroteno natural
-- Annatto (bixina / norbixina)
-- Chlorofila de espinaca
-- Cochinilla (E120) - carmín
-- Extracto de grosella
-- Extracto de arándano
-- Extracto de zanahoria negra
-- Extracto de col lombarda
-
----
-
-## 41. COMPLEMENTOS, DECORACIONES Y HOJAS ESPECIALES
-
-- Hoja de platano para envolver
-- Hoja de maíz seca
-- Papel de arroz (bánh tráng)
-- Papel de soja (spring roll wrapper)
-- Pasta de wonton (láminas cuadradas)
-- Pasta de gyoza (láminas redondas)
-- Pasta de bao (masa levada)
-- Masa de samosa (pasta brick)
-- Pasta brick circular
-- Pasta filo en hojas
-- Pasta filo integral
-- Masa de empanada lista
-- Masa de pizza
-- Masa de focaccia congelada
-- Corteza de cerdo (chicharrón frito)
-- Skins de patata (pieles)
-- Hojas de nori tostadas en snack
-- Obulato (papel de almidón comestible)
-- Hoja de oro 23K comestible
-- Hoja de plata comestible
-- Edible glitter
-- Lustre metálico comestible
-- Perlas de azúcar
-- Virutas de coco tostadas
-- Garrapiñada de almendra
-- Almendra garrapiñada
-- Avellana garrapiñada
-
----
-
-## 42. HARINAS SIN GLUTEN Y MEZCLAS
-
-- Preparado sin gluten para pan
-- Preparado sin gluten para bizcocho
-- Premezcla para masa de pizza sin gluten
-- Harina de patata (almidón)
-- Harina de sorgo
-- Harina de mijo
-- Harina de teff sin gluten
-- Harina de garbanzos sin gluten
-- Mix de harinas panificables sin gluten
-- Psyllium en polvo (fibra ligante)
-- Goma xantana sin gluten
-- Harina de arroz glutinoso sin gluten
-
----
-
-## 43. AGUAS Y CALDOS ESPECIALES
-
-- Agua mineral sin gas
-- Agua mineral con gas
-- Agua de coco natural
-- Agua de pepino
-- Agua de azahar
-- Agua de rosas
-- Agua de kewra
-- Agua de florida (culto)
-- Caldo kombu
-- Caldo dashi
-- Caldo de miso
-- Caldo de pollo concentrado
-- Caldo de verduras concentrado
-- Fondo oscuro de buey
-- Caldo de marisco concentrado
-- Caldo de colágeno (bone broth)
-- Caldo de pies de cerdo
-- Agua de tomate (consomé frío)
-- Zumo de aloe vera
-
----
-
-## 44. MERMELADAS, CONFITURAS Y JALEAS
-
-- Mermelada de naranja amarga
-- Mermelada de fresa
-- Mermelada de frambuesa
-- Mermelada de arándano
-- Mermelada de melocotón
-- Mermelada de albaricoque
-- Mermelada de ciruela
-- Mermelada de higo
-- Mermelada de membrillo
-- Jalea de grosella roja
-- Jalea de manzana
-- Jalea de menta
-- Confitura de cereza
-- Curd de limón (lemon curd)
-- Curd de naranja
-- Curd de maracuyá
-- Pasta de membrillo
-- Dulce de leche (caramelo de leche)
-- Cajeta (dulce de leche mexicano)
-- Manjar blanco (latinoamérica)
-- Mermelada de pimiento rojo
-- Mermelada de tomate
-- Mermelada de cebolla caramelizada
-- Compota de pera y jengibre
-- Compota de manzana
-- Chutney de mango
-- Chutney de cebolla
-- Chutney de tomate verde
-- Chutney de albaricoque
-- Chutney de arándano rojo (cranberry)
-
----
-
-## 45. AROMÁTICOS ESPECIALES Y DESTILADOS PARA COCINA
-
-- Extracto natural de almendra amarga
-- Esencia de rosa
-- Esencia de naranja
-- Esencia de menta
-- Extracto de café (café concentrado)
-- Polvo de café (espresso molido fino)
-- Extracto de malta
-- Miso en pasta dulce
-- Vinagre de malta oscuro
-- Aceite esencial de bergamota (grado culinario)
-- Aceite esencial de limón (grado culinario)
-- Aceite esencial de naranja (grado culinario)
-- Aceite esencial de romero (grado culinario)
-- Extracto de lavanda
-- Jarabe simple de lavanda
-- Jarabe simple de menta
-- Jarabe simple de jengibre
-- Jarabe simple de vainilla
