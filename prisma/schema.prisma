@@ -23,6 +23,36 @@ enum Difficulty {
   HARD
 }
 
+enum UserRole {
+  USER
+  CONTRIBUTOR
+  ADMIN
+}
+
+enum Conservation {
+  NEVERA
+  CONGELADOR
+  DESPENSA
+}
+
+enum Unit {
+  G
+  KG
+  ML
+  L
+  UNIT
+  PACK
+  CAN
+  BOTTLE
+  JAR
+  BOX
+  BAG
+  TBSP
+  TSP
+  SLICE
+  CLOVE
+}
+
 // ─────────────────────────────────────────────
 // User
 // ─────────────────────────────────────────────
@@ -32,12 +62,14 @@ model User {
   email     String   @unique
   username  String   @unique
   password  String
+  role      UserRole @default(USER)
   avatar    String?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   // Relations
   orders        Order[]
+  pantryItems   PantryItem[]
   shoppingItems ShoppingItem[]
   savedRecipes  UserSavedRecipe[]
   favoriteShops UserFavoriteShop[]
@@ -54,6 +86,7 @@ model User {
 model IngredientCategory {
   id   Int    @id @default(autoincrement())
   name String @unique
+  icon String @default("test")
 
   // Relations
   ingredients Ingredient[]
@@ -74,17 +107,33 @@ model Restriction {
 
 // Reusable ingredient definition
 model Ingredient {
-  id         Int @id @default(autoincrement())
-  name       String
-  categoryId Int
+  id             Int     @id @default(autoincrement())
+  name           String
+  normalizedName String?
+  tsvName        String?
+  categoryId     Int
 
   // Relations
-  category     IngredientCategory     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  restrictions IngredientRestriction[]
-  recipes      RecipeIngredient[]
+  category      IngredientCategory      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  barcodes      Barcode[]
+  restrictions  IngredientRestriction[]
+  pantryItems   PantryItem[]
+  recipes       RecipeIngredient[]
+  shoppingItems ShoppingItem[]
 
   @@index([categoryId])
   @@map("ingredients")
+}
+
+model Barcode {
+  id           Int    @id @default(autoincrement())
+  value        String @unique
+  ingredientId Int
+
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+
+  @@index([ingredientId])
+  @@map("barcodes")
 }
 
 // Join table: Ingredient <-> Restriction (many-to-many)
@@ -108,9 +157,9 @@ model Recipe {
   name       String
   authorId   Int
   difficulty Difficulty
-  prepTime   Int        // preparation time in minutes
+  prepTime   Int // preparation time in minutes
   createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  updatedAt  DateTime   @default(now()) @updatedAt
 
   // Relations
   author      User               @relation(fields: [authorId], references: [id], onDelete: Cascade)
@@ -154,11 +203,13 @@ model UserSavedRecipe {
 
 model Shop {
   id   Int    @id @default(autoincrement())
-  name String
+  name String @unique
 
   // Relations
-  favoritedBy UserFavoriteShop[]
-  orders      Order[]
+  favoritedBy   UserFavoriteShop[]
+  pantryItems   PantryItem[]
+  orders        Order[]
+  shoppingItems ShoppingItem[]
 
   @@map("shops")
 }
@@ -179,15 +230,40 @@ model UserFavoriteShop {
 // Orders & Shopping
 // ─────────────────────────────────────────────
 
+model PantryItem {
+  id           Int          @id @default(autoincrement())
+  userId       Int
+  ingredientId Int
+  acquiredAt   DateTime     @default(now())
+  expiresAt    DateTime?
+  quantity     Float?       @default(1)
+  unit         Unit?        @default(UNIT)
+  conservation Conservation @default(NEVERA)
+  shopId       Int?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @default(now()) @updatedAt
+
+  // Relations
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  shop       Shop?      @relation(fields: [shopId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([ingredientId])
+  @@index([expiresAt])
+  @@index([shopId])
+  @@map("pantry_items")
+}
+
 model Order {
   id        Int      @id @default(autoincrement())
   userId    Int
   shopId    Int
   date      DateTime
   price     Float
-  ticket    String?  // optional photo URL of the purchase receipt
+  ticket    String? // optional photo URL of the purchase receipt
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 
   // Relations
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -200,21 +276,26 @@ model Order {
 }
 
 model ShoppingItem {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  orderId   Int?     // null = pending in shopping list; set = belongs to a completed order
-  name      String
-  quantity  Float?
-  unit      String?
-  checked   Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  ingredientId Int
+  shopId       Int?
+  orderId      Int? // null = pending in shopping list; set = belongs to a completed order
+  quantity     Float?
+  unit         String?
+  checked      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
 
   // Relations
-  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  order Order? @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  shop       Shop?      @relation(fields: [shopId], references: [id], onDelete: SetNull)
+  order      Order?     @relation(fields: [orderId], references: [id], onDelete: SetNull)
 
   @@index([userId])
+  @@index([ingredientId])
+  @@index([shopId])
   @@index([orderId])
   @@map("shopping_items")
 }

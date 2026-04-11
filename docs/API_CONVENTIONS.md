@@ -3,6 +3,7 @@
 ## Response envelope
 
 ### Success
+
 ```json
 {
   "ok": true,
@@ -11,6 +12,7 @@
 ```
 
 ### Error
+
 ```json
 {
   "ok": false,
@@ -23,6 +25,7 @@
 ```
 
 ## HTTP status guidelines
+
 - `200 OK`: successful read/update.
 - `201 Created`: successful resource creation.
 - `204 No Content`: successful deletion without body.
@@ -35,15 +38,26 @@
 - `500 Internal Server Error`: unexpected server failure.
 
 ## Validation rules
+
 - Validate `params`, `query`, and `body` before calling services.
 - Return stable `error.code` values for predictable client behavior.
 - Avoid leaking stack traces in production responses.
 
+## Authentication and authorization
+
+- Access and refresh JWT payloads must include: `sub`, `email`, `username`, `role`, `type`.
+- Supported user roles: `USER`, `CONTRIBUTOR`, `ADMIN`.
+- For role-protected endpoints:
+  - Return `401` when the token is missing or invalid.
+  - Return `403` when the authenticated role is not allowed for the operation.
+
 ## Route design
+
 - Use plural resources: `/users`, `/pantries`, `/products`.
 - Keep nested routes shallow and meaningful.
 - Prefer explicit route params (`/pantries/:pantryId/items/:itemId`).
 
 ## Logging and traceability
+
 - Log request id, method, path, status code, and execution time.
 - Do not log sensitive fields (passwords, tokens, secrets).

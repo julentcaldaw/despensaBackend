@@ -6,5 +6,6 @@
         "source.organizeImports": "explicit"
     },
     "typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.preferences.importModuleSpecifier": "non-relative"
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "prisma.pinToPrisma6": true
 }

@@ -1,12 +1,14 @@
 # AGENTS
 
 ## Project overview
+
 - Stack: Node.js + Express 5 + TypeScript (ESM).
 - Entrypoint: `src/index.ts`.
 - Build output: `dist/`.
 - Main purpose: pantry management API (inventory, expiration control, and shopping planning).
 
 ## Working commands
+
 - Install deps: `npm install`
 - Dev mode: `npm run dev`
 - Type check: `npm run typecheck`
@@ -17,18 +19,22 @@
 - View database UI: `npm run prisma:studio`
 
 ## Development guidelines
+
 - Keep TypeScript strict mode enabled.
 - Use ESM import/export syntax.
 - Prefer small route modules and move business logic into services.
 - Validate request payloads before hitting business logic.
 - Never commit secrets; use `.env` and keep `.env.example` updated.
+- For protected write operations, enforce RBAC with authenticated user role (`USER`, `CONTRIBUTOR`, `ADMIN`).
 
 ## Response conventions
+
 - Success response: `{ ok: true, data }`
 - Error response: `{ ok: false, error: { code, message, details? } }`
 - Prefer explicit HTTP status codes by scenario.
 
 ## Domain entities (baseline)
+
 - User
 - Pantry
 - PantryItem
@@ -38,6 +44,7 @@
 - ShoppingListItem
 
 ## Source of truth docs
+
 - `README.md`: quick start and high-level context.
 - `docs/PROJECT_OVERVIEW.md`: purpose, scope, and decisions.
 - `docs/DOMAIN_MODEL.md`: entities, relationships, and invariants.
@@ -46,6 +53,7 @@
 - `.github/copilot-instructions.md`: coding rules for Copilot.
 
 ## Agent workflow
+
 1. Read `README.md` and `docs/PROJECT_OVERVIEW.md` before large changes.
 2. If adding new entities, update `prisma/schema.prisma` first, then run `npm run prisma:migrate`.
 3. Generate Prisma types: `npm run prisma:generate` (updates Prisma Client in `node_modules/@prisma/client`).
@@ -57,6 +65,7 @@
 9. Verify documentation renders correctly at http://localhost:3000/docs.
 
 ## Suggested folder structure
+
 - `src/index.ts` bootstrap + middleware
 - `src/routes/*` route handlers
 - `src/controllers/*` HTTP orchestration

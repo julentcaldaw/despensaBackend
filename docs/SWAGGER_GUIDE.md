@@ -7,12 +7,13 @@ Copilot debe seguir este patrón para todos los nuevos endpoints.
 
 Cada endpoint debe tener un bloque JSDoc `@openapi` inmediatamente antes de su definición.
 El bloque debe incluir:
+
 - `summary`: descripción corta (máx 120 caracteres)
 - `description`: detalles adicionales
 - `tags`: categoría lógica
 - `parameters` (opcional): path, query, headers
 - `requestBody` (opcional): payload del request
-- `responses`: al menos 200, 400, 401 si aplica
+- `responses`: al menos 200, 400, 401 y 403 si aplica
 
 ## Plantillas por método
 
@@ -280,15 +281,17 @@ Luego usa en endpoints: `$ref: '#/components/schemas/Product'`
 ## Reglas clave
 
 1. **Documentación antes de código**: escribe JSDoc primero, luego implementa.
-2. **Siempre include error responses**: 400, 401, 404, 422 según corresponda.
+2. **Siempre include error responses**: 400, 401, 403, 404, 422 según corresponda.
 3. **Sé específico en ejemplos**: usa datos realistas (ej: "Leche fresca" no "product").
 4. **Tags coherentes**: agrupa por recurso (Products, Users, Pantries, etc).
 5. **Esquemas reutilizables**: no repitas definiciones, usa `$ref`.
 6. **Secureity en endpoints protegidos**: añade `security: [{ bearerAuth: [] }]`.
+7. **RBAC explícito**: cuando una ruta requiera roles concretos, menciónalo en `description` y documenta `403 Forbidden`.
 
 ## Validación
 
 Después de añadir documentación:
+
 1. `npm run build` debe pasar sin errores
 2. Abre http://localhost:3000/docs para verificar visualización
 3. Verifica que los ejemplos de respuesta sean coherentes con el código
