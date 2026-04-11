@@ -1,3 +1,4 @@
+import type { UserRole } from "@prisma/client";
 import jwt, { type JwtPayload, type SignOptions } from "jsonwebtoken";
 
 type TokenType = "access" | "refresh";
@@ -8,6 +9,7 @@ export type AuthTokenPayload = JwtPayload & {
     sub: string;
     email: string;
     username: string;
+    role: UserRole;
     type: TokenType;
 };
 
@@ -15,6 +17,7 @@ type TokenUser = {
     id: number;
     email: string;
     username: string;
+    role: UserRole;
 };
 
 function getAccessSecret(): string {
@@ -44,6 +47,7 @@ function signToken(user: TokenUser, type: TokenType, secret: string, expiresIn: 
             sub: String(user.id),
             email: user.email,
             username: user.username,
+            role: user.role,
             type,
         },
         secret,

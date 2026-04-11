@@ -1,3 +1,4 @@
+import type { UserRole } from "@prisma/client";
 import { comparePassword, hashPassword } from "../../lib/hash.js";
 import { signAccessToken, signRefreshToken, verifyRefreshToken } from "../../lib/jwt.js";
 import { prisma } from "../../lib/prisma.js";
@@ -29,6 +30,7 @@ type AuthUser = {
     id: number;
     email: string;
     username: string;
+    role: UserRole;
     avatar: string | null;
 };
 
@@ -41,8 +43,8 @@ type AuthResult = {
 function toAuthResult(user: AuthUser): AuthResult {
     return {
         user,
-        accessToken: signAccessToken({ id: user.id, email: user.email, username: user.username }),
-        refreshToken: signRefreshToken({ id: user.id, email: user.email, username: user.username }),
+        accessToken: signAccessToken({ id: user.id, email: user.email, username: user.username, role: user.role }),
+        refreshToken: signRefreshToken({ id: user.id, email: user.email, username: user.username, role: user.role }),
     };
 }
 
@@ -74,6 +76,7 @@ export async function register(input: RegisterInput): Promise<AuthResult> {
             id: true,
             email: true,
             username: true,
+            role: true,
             avatar: true,
         },
     });
@@ -88,6 +91,7 @@ export async function login(input: LoginInput): Promise<AuthResult> {
             id: true,
             email: true,
             username: true,
+            role: true,
             avatar: true,
             password: true,
         },
@@ -106,6 +110,7 @@ export async function login(input: LoginInput): Promise<AuthResult> {
         id: user.id,
         email: user.email,
         username: user.username,
+        role: user.role,
         avatar: user.avatar,
     });
 }
@@ -130,6 +135,7 @@ export async function refreshToken(refreshToken: string): Promise<AuthResult> {
             id: true,
             email: true,
             username: true,
+            role: true,
             avatar: true,
         },
     });
