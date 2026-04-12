@@ -73,3 +73,16 @@
 - `src/middlewares/*` auth/validation/error handlers
 - `src/lib/*` reusable utilities
 - `src/types/*` shared TypeScript types
+- `src/modules/automation/*` internal automation integrations (e.g., n8n), not exposed through Express routes
+
+## Internal automation
+
+- Internal n8n integration lives in `src/modules/automation/automation.service.ts`.
+- It is intentionally not mounted in `src/index.ts` as public API routes.
+- Environment variables:
+  - `N8N_URL`
+  - `N8N_BASE_URL`
+  - `N8N_API_KEY`
+  - `N8N_TIMEOUT_MS`
+  - `N8N_USER`
+  - `N8N_PASSWORD`

@@ -10,3 +10,5 @@ npm-debug.log*
 /src/generated/prisma
 
 /generated/prisma
+
+n8n/*

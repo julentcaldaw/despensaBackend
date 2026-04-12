@@ -18,7 +18,7 @@
 - [GET] recipes -> Lista recetas con autor, número de ingredientes y `like` boolean según el usuario autenticado. Requiere auth.
 - [GET] recipes/cookable -> Devuelve dos listados: `cookable` (100% ingredientes disponibles) y `almostCookable` (más del 75% disponibles y como máximo 4 ingredientes faltantes). Requiere auth.
 - [GET] recipes/:id -> Obtiene detalle de receta con ingredientes. Requiere auth.
-- [POST] recipes/:id/like -> Marca o desmarca like para una receta del usuario autenticado (body opcional `{ like: boolean }`, por defecto `true`). El usuario se obtiene del token, no del body. Requiere auth.
+- [POST] recipes/:id/like -> Marca o desmarca like para una receta del usuario autenticado (body obligatorio `{ like: boolean }`). El usuario se obtiene del token, no del body. Requiere auth.
 - [POST] recipes -> Crea una receta del usuario autenticado. Requiere auth.
 - [PATCH] recipes/:id -> Actualiza una receta propia del usuario autenticado. Requiere auth.
 - [DELETE] recipes/:id -> Elimina una receta propia del usuario autenticado. Requiere auth.

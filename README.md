@@ -41,6 +41,7 @@ Esta API permite gestionar una despensa domestica:
 ## Estructura base
 
 - `src/index.ts`: bootstrap del servidor y endpoint de salud.
+- `src/modules/automation/automation.service.ts`: cliente interno para interactuar con n8n (no expuesto como endpoint HTTP).
 - `.github/copilot-instructions.md`: pautas para Copilot.
 - `AGENTS.md`: contexto operativo para agentes.
 
