@@ -117,6 +117,8 @@ Fields:
 
 - `id` — autoincrement PK
 - `name`
+- `detail` — optional long text with the step-by-step instructions
+- `image` — optional image URL of the recipe
 - `authorId` → `User`
 - `difficulty` — enum `Difficulty`
 - `prepTime` — integer, minutes

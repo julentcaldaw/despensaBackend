@@ -17,6 +17,8 @@ import {
 
 type CreateRecipeBody = {
 	name?: unknown;
+	detail?: unknown;
+	image?: unknown;
 	difficulty?: unknown;
 	prepTime?: unknown;
 	ingredients?: unknown;
@@ -24,6 +26,8 @@ type CreateRecipeBody = {
 
 type UpdateRecipeBody = {
 	name?: unknown;
+	detail?: unknown;
+	image?: unknown;
 	difficulty?: unknown;
 	prepTime?: unknown;
 	ingredients?: unknown;
@@ -74,7 +78,7 @@ function parseLikeValue(body: SetRecipeLikeBody): boolean {
 	}
 
 	if (typeof body.like === "undefined") {
-		return true;
+		throw new RecipeError("VALIDATION_ERROR", 400, "like is required and must be a boolean");
 	}
 
 	if (typeof body.like !== "boolean") {
@@ -90,6 +94,40 @@ function parseName(value: unknown, fieldName: string): string {
 	}
 
 	return value.trim();
+}
+
+function parseDetail(value: unknown, fieldName: string): string | null {
+	if (value === null || typeof value === "undefined") {
+		return null;
+	}
+
+	if (typeof value !== "string") {
+		throw new RecipeError("VALIDATION_ERROR", 400, `${fieldName} must be a string or null`);
+	}
+
+	const normalized = value.trim();
+	if (normalized.length === 0) {
+		throw new RecipeError("VALIDATION_ERROR", 400, `${fieldName} cannot be empty`);
+	}
+
+	return normalized;
+}
+
+function parseImage(value: unknown, fieldName: string): string | null {
+	if (value === null || typeof value === "undefined") {
+		return null;
+	}
+
+	if (typeof value !== "string") {
+		throw new RecipeError("VALIDATION_ERROR", 400, `${fieldName} must be a string or null`);
+	}
+
+	const normalized = value.trim();
+	if (normalized.length === 0) {
+		throw new RecipeError("VALIDATION_ERROR", 400, `${fieldName} cannot be empty`);
+	}
+
+	return normalized;
 }
 
 function parseDifficulty(value: unknown, fieldName: string): Difficulty {
@@ -167,6 +205,8 @@ function parseIngredients(value: unknown, fieldName: string): RecipeIngredientIn
 function parseCreateInput(body: CreateRecipeBody): CreateRecipeInput {
 	return {
 		name: parseName(body.name, "name"),
+		detail: parseDetail(body.detail, "detail"),
+		image: parseImage(body.image, "image"),
 		difficulty: parseDifficulty(body.difficulty, "difficulty"),
 		prepTime: parsePositiveInteger(body.prepTime, "prepTime"),
 		ingredients: parseIngredients(body.ingredients, "ingredients"),
@@ -182,6 +222,14 @@ function parseUpdateInput(body: UpdateRecipeBody): UpdateRecipeInput {
 
 	if (Object.prototype.hasOwnProperty.call(body, "name")) {
 		input.name = parseName(body.name, "name");
+	}
+
+	if (Object.prototype.hasOwnProperty.call(body, "detail")) {
+		input.detail = parseDetail(body.detail, "detail");
+	}
+
+	if (Object.prototype.hasOwnProperty.call(body, "image")) {
+		input.image = parseImage(body.image, "image");
 	}
 
 	if (Object.prototype.hasOwnProperty.call(body, "difficulty")) {
@@ -249,8 +297,9 @@ export async function listCookableRecipesController(req: Request, res: Response)
 
 export async function getRecipeByIdController(req: Request, res: Response): Promise<Response> {
 	try {
+		const userId = getAuthenticatedUserId(req);
 		const recipeId = parseRecipeId(req.params.id);
-		const recipe = await getRecipeById(recipeId);
+		const recipe = await getRecipeById(recipeId, userId);
 
 		return res.status(200).json({
 			ok: true,

@@ -19,8 +19,8 @@
 - [GET] recipes/cookable -> Devuelve dos listados: `cookable` (100% ingredientes disponibles) y `almostCookable` (más del 75% disponibles y como máximo 4 ingredientes faltantes). Requiere auth.
 - [GET] recipes/:id -> Obtiene detalle de receta con ingredientes. Requiere auth.
 - [POST] recipes/:id/like -> Marca o desmarca like para una receta del usuario autenticado (body obligatorio `{ like: boolean }`). El usuario se obtiene del token, no del body. Requiere auth.
-- [POST] recipes -> Crea una receta del usuario autenticado. Requiere auth.
-- [PATCH] recipes/:id -> Actualiza una receta propia del usuario autenticado. Requiere auth.
+- [POST] recipes -> Crea una receta del usuario autenticado. Soporta `detail` para el paso a paso e `image` opcional. Requiere auth.
+- [PATCH] recipes/:id -> Actualiza una receta propia del usuario autenticado. Soporta `detail` para el paso a paso e `image` opcional. Requiere auth.
 - [DELETE] recipes/:id -> Elimina una receta propia del usuario autenticado. Requiere auth.
 
 ## PANTRY

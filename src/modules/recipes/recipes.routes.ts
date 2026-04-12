@@ -40,7 +40,7 @@ recipesRouter.get("/", authenticateUser, listRecipesController);
  * /api/recipes/cookable:
  *   get:
  *     summary: List cookable recipes
- *     description: "Returns two lists based on pantry ingredients: cookable (all ingredients available) and almostCookable (more than 75% available and at most 4 missing ingredients)."
+ *     description: "Returns two lists based on pantry ingredients: cookable (all ingredients available) and almostCookable (more than 75% available and at most 4 missing ingredients). Each ingredient row includes inStock and inShoppingList booleans for the authenticated user."
  *     tags:
  *       - Recipes
  *     security:
@@ -62,7 +62,7 @@ recipesRouter.get("/cookable", authenticateUser, listCookableRecipesController);
  * /api/recipes/{id}:
  *   get:
  *     summary: Get recipe by id
- *     description: Returns recipe detail including ingredient rows.
+ *     description: Returns recipe detail including liked boolean and ingredient rows with inStock and inShoppingList availability for the authenticated user.
  *     tags:
  *       - Recipes
  *     security:
@@ -116,7 +116,7 @@ recipesRouter.get("/:id", authenticateUser, getRecipeByIdController);
  *           type: integer
  *         description: Recipe id
  *     requestBody:
- *       required: false
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -124,8 +124,8 @@ recipesRouter.get("/:id", authenticateUser, getRecipeByIdController);
  *             properties:
  *               like:
  *                 type: boolean
- *                 default: true
  *                 description: true to mark like, false to remove like.
+ *             required: [like]
  *             additionalProperties: false
  *     responses:
  *       200:
@@ -171,6 +171,14 @@ recipesRouter.post("/:id/like", authenticateUser, setRecipeLikeController);
  *               name:
  *                 type: string
  *                 example: Tortilla de patatas
+ *               detail:
+ *                 type: string
+ *                 nullable: true
+ *                 example: Pelar las patatas, freirlas, batir los huevos y cuajar la tortilla.
+ *               image:
+ *                 type: string
+ *                 nullable: true
+ *                 example: https://cdn.example.com/recipes/tortilla.jpg
  *               difficulty:
  *                 type: string
  *                 enum: [EASY, MEDIUM, HARD]
@@ -243,6 +251,12 @@ recipesRouter.post("/", authenticateUser, createRecipeController);
  *             properties:
  *               name:
  *                 type: string
+ *               detail:
+ *                 type: string
+ *                 nullable: true
+ *               image:
+ *                 type: string
+ *                 nullable: true
  *               difficulty:
  *                 type: string
  *                 enum: [EASY, MEDIUM, HARD]

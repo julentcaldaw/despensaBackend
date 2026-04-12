@@ -155,6 +155,8 @@ model IngredientRestriction {
 model Recipe {
   id         Int        @id @default(autoincrement())
   name       String
+  detail     String?
+  image      String?
   authorId   Int
   difficulty Difficulty
   prepTime   Int // preparation time in minutes

@@ -1,6 +1,7 @@
 import type { Difficulty } from "@prisma/client";
 
 import { prisma } from "../../lib/prisma.js";
+import { triggerRecipeWorkflow } from "../automation/automation.service.js";
 
 export class RecipeError extends Error {
 	constructor(
@@ -22,6 +23,8 @@ export type RecipeIngredientInput = {
 
 export type CreateRecipeInput = {
 	name: string;
+	detail?: string | null;
+	image?: string | null;
 	difficulty: Difficulty;
 	prepTime: number;
 	ingredients: RecipeIngredientInput[];
@@ -29,6 +32,8 @@ export type CreateRecipeInput = {
 
 export type UpdateRecipeInput = {
 	name?: string;
+	detail?: string | null;
+	image?: string | null;
 	difficulty?: Difficulty;
 	prepTime?: number;
 	ingredients?: RecipeIngredientInput[];
@@ -37,6 +42,7 @@ export type UpdateRecipeInput = {
 export type RecipeListItem = {
 	id: number;
 	name: string;
+	image: string | null;
 	difficulty: Difficulty;
 	prepTime: number;
 	createdAt: Date;
@@ -61,6 +67,7 @@ export type CookableRecipeListItem = RecipeListItem & {
 		quantity: number | null;
 		unit: string | null;
 		inStock: boolean;
+		inShoppingList: boolean;
 		ingredient: {
 			id: number;
 			name: string;
@@ -76,6 +83,8 @@ export type CookableRecipeListItem = RecipeListItem & {
 export type RecipeResult = {
 	id: number;
 	name: string;
+	detail: string | null;
+	image: string | null;
 	difficulty: Difficulty;
 	prepTime: number;
 	authorId: number;
@@ -102,9 +111,31 @@ export type RecipeResult = {
 	}>;
 };
 
+export type RecipeDetailResult = Omit<RecipeResult, "ingredients"> & {
+	liked: boolean;
+	ingredients: Array<{
+		ingredientId: number;
+		quantity: number | null;
+		unit: string | null;
+		inStock: boolean;
+		inShoppingList: boolean;
+		ingredient: {
+			id: number;
+			name: string;
+			category: {
+				id: number;
+				name: string;
+				icon: string;
+			};
+		};
+	}>;
+};
+
 const RECIPE_SELECT = {
 	id: true,
 	name: true,
+	detail: true,
+	image: true,
 	difficulty: true,
 	prepTime: true,
 	authorId: true,
@@ -176,6 +207,7 @@ export async function listRecipes(userId: number): Promise<RecipeListItem[]> {
 		select: {
 			id: true,
 			name: true,
+			image: true,
 			difficulty: true,
 			prepTime: true,
 			createdAt: true,
@@ -203,6 +235,7 @@ export async function listRecipes(userId: number): Promise<RecipeListItem[]> {
 	return recipes.map((recipe) => ({
 		id: recipe.id,
 		name: recipe.name,
+		image: recipe.image,
 		difficulty: recipe.difficulty,
 		prepTime: recipe.prepTime,
 		createdAt: recipe.createdAt,
@@ -220,7 +253,17 @@ export async function listCookableRecipes(userId: number): Promise<CookableRecip
 		distinct: ["ingredientId"],
 	});
 
+	const shoppingIngredientRows = await prisma.shoppingItem.findMany({
+		where: {
+			userId,
+			orderId: null,
+		},
+		select: { ingredientId: true },
+		distinct: ["ingredientId"],
+	});
+
 	const pantryIngredientSet = new Set(pantryIngredientRows.map((row) => row.ingredientId));
+	const shoppingIngredientSet = new Set(shoppingIngredientRows.map((row) => row.ingredientId));
 	if (pantryIngredientSet.size === 0) {
 		return {
 			cookable: [],
@@ -241,6 +284,7 @@ export async function listCookableRecipes(userId: number): Promise<CookableRecip
 		select: {
 			id: true,
 			name: true,
+			image: true,
 			difficulty: true,
 			prepTime: true,
 			createdAt: true,
@@ -302,6 +346,7 @@ export async function listCookableRecipes(userId: number): Promise<CookableRecip
 			quantity: row.quantity,
 			unit: row.unit,
 			inStock: pantryIngredientSet.has(row.ingredientId),
+			inShoppingList: shoppingIngredientSet.has(row.ingredientId),
 			ingredient: row.ingredient,
 		}));
 
@@ -313,6 +358,7 @@ export async function listCookableRecipes(userId: number): Promise<CookableRecip
 		const mapped: CookableRecipeListItem = {
 			id: recipe.id,
 			name: recipe.name,
+			image: recipe.image,
 			difficulty: recipe.difficulty,
 			prepTime: recipe.prepTime,
 			createdAt: recipe.createdAt,
@@ -339,7 +385,7 @@ export async function listCookableRecipes(userId: number): Promise<CookableRecip
 	};
 }
 
-export async function getRecipeById(recipeId: number): Promise<RecipeResult> {
+export async function getRecipeById(recipeId: number, userId: number): Promise<RecipeDetailResult> {
 	const recipe = await prisma.recipe.findUnique({
 		where: { id: recipeId },
 		select: RECIPE_SELECT,
@@ -349,7 +395,43 @@ export async function getRecipeById(recipeId: number): Promise<RecipeResult> {
 		throw new RecipeError("RECIPE_NOT_FOUND", 404, "Recipe not found", { recipeId });
 	}
 
-	return recipe;
+	const pantryIngredientRows = await prisma.pantryItem.findMany({
+		where: { userId },
+		select: { ingredientId: true },
+		distinct: ["ingredientId"],
+	});
+
+	const shoppingIngredientRows = await prisma.shoppingItem.findMany({
+		where: {
+			userId,
+			orderId: null,
+		},
+		select: { ingredientId: true },
+		distinct: ["ingredientId"],
+	});
+
+	const likedRow = await prisma.userSavedRecipe.findUnique({
+		where: {
+			userId_recipeId: {
+				userId,
+				recipeId,
+			},
+		},
+		select: { userId: true },
+	});
+
+	const pantryIngredientSet = new Set(pantryIngredientRows.map((row) => row.ingredientId));
+	const shoppingIngredientSet = new Set(shoppingIngredientRows.map((row) => row.ingredientId));
+
+	return {
+		...recipe,
+		liked: Boolean(likedRow),
+		ingredients: recipe.ingredients.map((item) => ({
+			...item,
+			inStock: pantryIngredientSet.has(item.ingredientId),
+			inShoppingList: shoppingIngredientSet.has(item.ingredientId),
+		})),
+	};
 }
 
 export async function setRecipeLike(userId: number, recipeId: number, liked: boolean): Promise<void> {
@@ -390,9 +472,11 @@ export async function setRecipeLike(userId: number, recipeId: number, liked: boo
 export async function createRecipe(userId: number, input: CreateRecipeInput): Promise<RecipeResult> {
 	await ensureIngredientsExist(input.ingredients.map((item) => item.ingredientId));
 
-	return prisma.recipe.create({
+	const recipe = await prisma.recipe.create({
 		data: {
 			name: input.name,
+			detail: input.detail ?? null,
+			image: input.image ?? null,
 			authorId: userId,
 			difficulty: input.difficulty,
 			prepTime: input.prepTime,
@@ -406,6 +490,17 @@ export async function createRecipe(userId: number, input: CreateRecipeInput): Pr
 		},
 		select: RECIPE_SELECT,
 	});
+
+	try {
+		await triggerRecipeWorkflow({
+			recipeId: recipe.id,
+			recipeName: recipe.name,
+		});
+	} catch {
+		// Recipe creation should not fail if downstream automation is unavailable.
+	}
+
+	return recipe;
 }
 
 export async function updateRecipe(userId: number, recipeId: number, input: UpdateRecipeInput): Promise<RecipeResult> {
@@ -430,6 +525,8 @@ export async function updateRecipe(userId: number, recipeId: number, input: Upda
 		where: { id: recipeId },
 		data: {
 			name: input.name,
+			detail: Object.prototype.hasOwnProperty.call(input, "detail") ? (input.detail ?? null) : undefined,
+			image: Object.prototype.hasOwnProperty.call(input, "image") ? (input.image ?? null) : undefined,
 			difficulty: input.difficulty,
 			prepTime: input.prepTime,
 			ingredients: Object.prototype.hasOwnProperty.call(input, "ingredients")
