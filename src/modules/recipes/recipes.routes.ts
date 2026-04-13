@@ -7,6 +7,8 @@ import {
     getRecipeByIdController,
     listCookableRecipesController,
     listRecipesController,
+    listRecipesOverviewController,
+    searchRecipesController,
     setRecipeLikeController,
     updateRecipeController,
 } from "./recipes.controller.js";
@@ -17,15 +19,39 @@ const recipesRouter = Router();
  * @openapi
  * /api/recipes:
  *   get:
- *     summary: List recipes
- *     description: Returns recipes with author summary, ingredients count and a like boolean for the authenticated user.
+ *     summary: List recipes with pagination
+ *     description: Returns a paginated list of recipes (excluding cookable and almost-cookable ones) ordered by the highest pantry coverage percentage for each recipe, then by absolute available ingredients, recency and like status. Each recipe includes author summary, ingredients count, and individual ingredient availability (`inStock` and `inShoppingList`). Default is 30 recipes per page.
  *     tags:
  *       - Recipes
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         description: Page number (1-indexed).
+ *       - name: pageSize
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 100
+ *           default: 30
+ *         description: Number of recipes per page.
  *     responses:
  *       200:
- *         description: Recipes listed successfully
+ *         description: Recipes listed successfully with pagination info
+ *       400:
+ *         description: Invalid query parameters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  *       401:
  *         description: Missing or invalid authentication
  *         content:
@@ -34,6 +60,96 @@ const recipesRouter = Router();
  *               $ref: '#/components/schemas/Error'
  */
 recipesRouter.get("/", authenticateUser, listRecipesController);
+
+/**
+ * @openapi
+ * /api/recipes/overview:
+ *   get:
+ *     summary: Get recipes overview (unified endpoint)
+ *     description: Returns cookable recipes, almost-cookable recipes, and a paginated list of regular recipes in a single request. This endpoint is optimized for loading a dashboard. Cookable recipes are those with 100% available ingredients. Almost-cookable have more than 75% available and max 4 missing. Regular recipes exclude both cookable categories and are ordered by the highest pantry coverage percentage, then by absolute available ingredients, recency and like status. Ingredient entries include both `inStock` and `inShoppingList`.
+ *     tags:
+ *       - Recipes
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         description: Page number for regular recipes (1-indexed).
+ *       - name: pageSize
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 100
+ *           default: 30
+ *         description: Number of regular recipes per page.
+ *     responses:
+ *       200:
+ *         description: Recipes overview loaded successfully
+ *       400:
+ *         description: Invalid query parameters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Missing or invalid authentication
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+recipesRouter.get("/overview", authenticateUser, listRecipesOverviewController);
+
+/**
+ * @openapi
+ * /api/recipes/search:
+ *   get:
+ *     summary: Search recipes by name
+ *     description: Predictive search for recipes by name. Results prioritize names that start with the query and include favorite status (`like`), total ingredient count, pantry ingredient count and shopping-list ingredient count for the authenticated user.
+ *     tags:
+ *       - Recipes
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: query
+ *         in: query
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Text to search by recipe name.
+ *       - name: limit
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 50
+ *           default: 6
+ *         description: Maximum number of results.
+ *     responses:
+ *       200:
+ *         description: Predictive search results
+ *       400:
+ *         description: Invalid query parameters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Missing or invalid authentication
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+recipesRouter.get("/search", authenticateUser, searchRecipesController);
 
 /**
  * @openapi

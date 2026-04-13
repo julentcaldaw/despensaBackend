@@ -7,12 +7,14 @@ import {
     getRecipeById,
     listCookableRecipes,
     listRecipes,
+    listRecipesOverview,
     RecipeError,
+    searchRecipesByName,
     setRecipeLike,
     updateRecipe,
     type CreateRecipeInput,
     type RecipeIngredientInput,
-    type UpdateRecipeInput,
+    type UpdateRecipeInput
 } from "./recipes.service.js";
 
 type CreateRecipeBody = {
@@ -31,6 +33,11 @@ type UpdateRecipeBody = {
 	difficulty?: unknown;
 	prepTime?: unknown;
 	ingredients?: unknown;
+};
+
+type SearchRecipesQuery = {
+	query?: unknown;
+	limit?: unknown;
 };
 
 const VALID_DIFFICULTY_VALUES: Difficulty[] = ["EASY", "MEDIUM", "HARD"];
@@ -247,17 +254,69 @@ function parseUpdateInput(body: UpdateRecipeBody): UpdateRecipeInput {
 	return input;
 }
 
-export async function listRecipesController(_req: Request, res: Response): Promise<Response> {
+function parseRecipeSearchQuery(queryParams: SearchRecipesQuery): { query: string; limit: number } {
+	if (typeof queryParams.query !== "string") {
+		throw new RecipeError("VALIDATION_ERROR", 400, "query is required and must be a string");
+	}
+
+	const query = queryParams.query.trim();
+	if (query.length === 0) {
+		throw new RecipeError("VALIDATION_ERROR", 400, "query must be a non-empty string");
+	}
+
+	const rawLimit = typeof queryParams.limit === "undefined" ? 6 : Number(queryParams.limit);
+	if (!Number.isInteger(rawLimit) || rawLimit <= 0 || rawLimit > 50) {
+		throw new RecipeError("VALIDATION_ERROR", 400, "limit must be an integer between 1 and 50");
+	}
+
+	return {
+		query,
+		limit: rawLimit,
+	};
+}
+
+type ListRecipesQuery = {
+	page?: unknown;
+	pageSize?: unknown;
+};
+
+function parsePageParam(value: unknown): number {
+	if (typeof value === "undefined") return 1;
+	if (typeof value === "string") {
+		const parsed = Number(value);
+		if (!Number.isInteger(parsed) || parsed < 1) {
+			throw new RecipeError("VALIDATION_ERROR", 400, "page must be a positive integer");
+		}
+		return parsed;
+	}
+	throw new RecipeError("VALIDATION_ERROR", 400, "page must be a positive integer");
+}
+
+function parsePageSizeParam(value: unknown): number {
+	if (typeof value === "undefined") return 30;
+	if (typeof value === "string") {
+		const parsed = Number(value);
+		if (!Number.isInteger(parsed) || parsed < 1 || parsed > 100) {
+			throw new RecipeError("VALIDATION_ERROR", 400, "pageSize must be between 1 and 100");
+		}
+		return parsed;
+	}
+	throw new RecipeError("VALIDATION_ERROR", 400, "pageSize must be between 1 and 100");
+}
+
+export async function listRecipesController(req: Request, res: Response): Promise<Response> {
 	try {
-		const userId = getAuthenticatedUserId(_req);
-		const recipes = await listRecipes(userId);
+		const userId = getAuthenticatedUserId(req);
+		const query = req.query as ListRecipesQuery;
+
+		const page = parsePageParam(query.page);
+		const pageSize = parsePageSizeParam(query.pageSize);
+
+		const result = await listRecipes(userId, page, pageSize);
 
 		return res.status(200).json({
 			ok: true,
-			data: {
-				items: recipes,
-				count: recipes.length,
-			},
+			data: result,
 		});
 	} catch (error) {
 		if (error instanceof RecipeError) {
@@ -265,6 +324,28 @@ export async function listRecipesController(_req: Request, res: Response): Promi
 		}
 
 		return sendError(res, 500, "INTERNAL_ERROR", "Unexpected error listing recipes");
+	}
+}
+
+export async function searchRecipesController(req: Request, res: Response): Promise<Response> {
+	try {
+		const userId = getAuthenticatedUserId(req);
+		const { query, limit } = parseRecipeSearchQuery(req.query as SearchRecipesQuery);
+		const items = await searchRecipesByName(userId, query, limit);
+
+		return res.status(200).json({
+			ok: true,
+			data: {
+				items,
+				count: items.length,
+			},
+		});
+	} catch (error) {
+		if (error instanceof RecipeError) {
+			return sendError(res, error.status, error.code, error.message, error.details);
+		}
+
+		return sendError(res, 500, "INTERNAL_ERROR", "Unexpected error searching recipes");
 	}
 }
 
@@ -292,6 +373,29 @@ export async function listCookableRecipesController(req: Request, res: Response)
 		}
 
 		return sendError(res, 500, "INTERNAL_ERROR", "Unexpected error listing cookable recipes");
+	}
+}
+
+export async function listRecipesOverviewController(req: Request, res: Response): Promise<Response> {
+	try {
+		const userId = getAuthenticatedUserId(req);
+		const query = req.query as ListRecipesQuery;
+
+		const page = parsePageParam(query.page);
+		const pageSize = parsePageSizeParam(query.pageSize);
+
+		const result = await listRecipesOverview(userId, page, pageSize);
+
+		return res.status(200).json({
+			ok: true,
+			data: result,
+		});
+	} catch (error) {
+		if (error instanceof RecipeError) {
+			return sendError(res, error.status, error.code, error.message, error.details);
+		}
+
+		return sendError(res, 500, "INTERNAL_ERROR", "Unexpected error listing recipes overview");
 	}
 }
 

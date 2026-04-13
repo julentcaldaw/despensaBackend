@@ -54,11 +54,52 @@ export type RecipeListItem = {
 		avatar: string | null;
 	};
 	ingredientsCount: number;
+	availableIngredientsCount: number;
+	ingredients: Array<{
+		ingredientId: number;
+		quantity: number | null;
+		unit: string | null;
+		inStock: boolean;
+		inShoppingList: boolean;
+		ingredient: {
+			id: number;
+			name: string;
+			category: {
+				id: number;
+				name: string;
+				icon: string;
+			};
+		};
+	}>;
+};
+
+export type RecipeSearchResultItem = {
+	id: number;
+	name: string;
+	image: string | null;
+	like: boolean;
+	ingredientsCount: number;
+	pantryIngredientsCount: number;
+	shoppingListIngredientsCount: number;
+};
+
+export type RecipeListResponse = {
+	items: RecipeListItem[];
+	total: number;
+	page: number;
+	pageSize: number;
+	totalPages: number;
 };
 
 export type CookableRecipesResult = {
 	cookable: CookableRecipeListItem[];
 	almostCookable: CookableRecipeListItem[];
+};
+
+export type RecipeOverviewResponse = {
+	cookable: CookableRecipeListItem[];
+	almostCookable: CookableRecipeListItem[];
+	recipes: RecipeListResponse;
 };
 
 export type CookableRecipeListItem = RecipeListItem & {
@@ -198,12 +239,92 @@ async function ensureIngredientsExist(ingredientIds: number[]): Promise<void> {
 	}
 }
 
-export async function listRecipes(userId: number): Promise<RecipeListItem[]> {
+async function getUserIngredientSets(userId: number): Promise<{
+	pantrySet: Set<number>;
+	shoppingSet: Set<number>;
+}> {
+	const [pantryRows, shoppingRows] = await Promise.all([
+		prisma.pantryItem.findMany({
+			where: { userId },
+			select: { ingredientId: true },
+			distinct: ["ingredientId"],
+		}),
+		prisma.shoppingItem.findMany({
+			where: {
+				userId,
+				orderId: null,
+			},
+			select: { ingredientId: true },
+			distinct: ["ingredientId"],
+		}),
+	]);
+
+	return {
+		pantrySet: new Set(pantryRows.map((row) => row.ingredientId)),
+		shoppingSet: new Set(shoppingRows.map((row) => row.ingredientId)),
+	};
+}
+
+function compareRecipesByPantryCoverage(
+	a: Pick<RecipeListItem, "availableIngredientsCount" | "ingredientsCount" | "createdAt" | "like" | "id">,
+	b: Pick<RecipeListItem, "availableIngredientsCount" | "ingredientsCount" | "createdAt" | "like" | "id">
+): number {
+	const aCoverage = a.ingredientsCount === 0 ? 0 : a.availableIngredientsCount / a.ingredientsCount;
+	const bCoverage = b.ingredientsCount === 0 ? 0 : b.availableIngredientsCount / b.ingredientsCount;
+
+	if (bCoverage !== aCoverage) {
+		return bCoverage - aCoverage;
+	}
+
+	if (b.availableIngredientsCount !== a.availableIngredientsCount) {
+		return b.availableIngredientsCount - a.availableIngredientsCount;
+	}
+
+	const createdAtDiff = b.createdAt.getTime() - a.createdAt.getTime();
+	if (createdAtDiff !== 0) {
+		return createdAtDiff;
+	}
+
+	if (a.like !== b.like) {
+		return a.like ? -1 : 1;
+	}
+
+	return b.id - a.id;
+}
+
+export async function listRecipes(
+	userId: number,
+	page: number = 1,
+	pageSize: number = 30
+): Promise<RecipeListResponse> {
+	// Validate pagination params
+	if (!Number.isInteger(page) || page < 1) {
+		throw new RecipeError("VALIDATION_ERROR", 400, "page must be a positive integer", { page });
+	}
+	if (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > 100) {
+		throw new RecipeError("VALIDATION_ERROR", 400, "pageSize must be between 1 and 100", { pageSize });
+	}
+
+	// Get cookable/almostCookable recipe IDs to exclude
+	const { cookable, almostCookable } = await listCookableRecipes(userId);
+	const cookableIds = new Set([...cookable.map((r) => r.id), ...almostCookable.map((r) => r.id)]);
+	const { pantrySet: pantryIngredientSet, shoppingSet: shoppingIngredientSet } = await getUserIngredientSets(userId);
+
+	// Get total count of recipes (excluding cookable)
+	const totalCount = await prisma.recipe.count({
+		where: {
+			NOT: {
+				id: { in: Array.from(cookableIds) },
+			},
+		},
+	});
+
 	const recipes = await prisma.recipe.findMany({
-		orderBy: [
-			{ createdAt: "desc" },
-			{ id: "desc" },
-		],
+		where: {
+			NOT: {
+				id: { in: Array.from(cookableIds) },
+			},
+		},
 		select: {
 			id: true,
 			name: true,
@@ -229,41 +350,155 @@ export async function listRecipes(userId: number): Promise<RecipeListItem[]> {
 					ingredients: true,
 				},
 			},
+			ingredients: {
+				select: {
+					ingredientId: true,
+					quantity: true,
+					unit: true,
+					ingredient: {
+						select: {
+							id: true,
+							name: true,
+							category: {
+								select: {
+									id: true,
+									name: true,
+									icon: true,
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 	});
 
-	return recipes.map((recipe) => ({
-		id: recipe.id,
-		name: recipe.name,
-		image: recipe.image,
-		difficulty: recipe.difficulty,
-		prepTime: recipe.prepTime,
-		createdAt: recipe.createdAt,
-		updatedAt: recipe.updatedAt,
-		like: recipe.savedBy.length > 0,
-		author: recipe.author,
-		ingredientsCount: recipe._count.ingredients,
-	}));
+	const items = recipes
+		.map((recipe) => {
+			const availableIngredientsCount = recipe.ingredients.filter((item) =>
+				pantryIngredientSet.has(item.ingredientId)
+			).length;
+
+			return {
+				id: recipe.id,
+				name: recipe.name,
+				image: recipe.image,
+				difficulty: recipe.difficulty,
+				prepTime: recipe.prepTime,
+				createdAt: recipe.createdAt,
+				updatedAt: recipe.updatedAt,
+				like: recipe.savedBy.length > 0,
+				author: recipe.author,
+				ingredientsCount: recipe._count.ingredients,
+				availableIngredientsCount,
+				ingredients: recipe.ingredients.map((item) => ({
+					ingredientId: item.ingredientId,
+					quantity: item.quantity,
+					unit: item.unit,
+					inStock: pantryIngredientSet.has(item.ingredientId),
+					inShoppingList: shoppingIngredientSet.has(item.ingredientId),
+					ingredient: item.ingredient,
+				})),
+			};
+		})
+		.sort(compareRecipesByPantryCoverage);
+
+	const skip = (page - 1) * pageSize;
+	const paginatedItems = items.slice(skip, skip + pageSize);
+
+	const totalPages = Math.ceil(totalCount / pageSize);
+
+	return {
+		items: paginatedItems,
+		total: totalCount,
+		page,
+		pageSize,
+		totalPages,
+	};
+}
+
+export async function searchRecipesByName(
+	userId: number,
+	query: string,
+	limit: number
+): Promise<RecipeSearchResultItem[]> {
+	const trimmed = query.trim();
+	if (trimmed.length === 0) {
+		return [];
+	}
+
+	const normalized = trimmed.toLowerCase();
+	const { pantrySet, shoppingSet } = await getUserIngredientSets(userId);
+
+	const rows = await prisma.recipe.findMany({
+		where: {
+			name: {
+				contains: trimmed,
+				mode: "insensitive",
+			},
+		},
+		select: {
+			id: true,
+			name: true,
+			image: true,
+			_count: {
+				select: {
+					ingredients: true,
+				},
+			},
+			ingredients: {
+				select: {
+					ingredientId: true,
+				},
+			},
+			savedBy: {
+				where: { userId },
+				select: { userId: true },
+				take: 1,
+			},
+		},
+		orderBy: [
+			{ name: "asc" },
+			{ id: "desc" },
+		],
+		take: limit,
+	});
+
+	return rows
+		.sort((a, b) => {
+			const aPrefix = a.name.toLowerCase().startsWith(normalized);
+			const bPrefix = b.name.toLowerCase().startsWith(normalized);
+
+			if (aPrefix === bPrefix) {
+				return a.name.localeCompare(b.name, "es", { sensitivity: "base" });
+			}
+
+			return aPrefix ? -1 : 1;
+		})
+		.slice(0, limit)
+		.map((row) => {
+			const pantryIngredientsCount = row.ingredients.filter((item) =>
+				pantrySet.has(item.ingredientId)
+			).length;
+			const shoppingListIngredientsCount = row.ingredients.filter((item) =>
+				shoppingSet.has(item.ingredientId)
+			).length;
+
+			return {
+				id: row.id,
+				name: row.name,
+				image: row.image,
+				like: row.savedBy.length > 0,
+				ingredientsCount: row._count.ingredients,
+				pantryIngredientsCount,
+				shoppingListIngredientsCount,
+			};
+		});
 }
 
 export async function listCookableRecipes(userId: number): Promise<CookableRecipesResult> {
-	const pantryIngredientRows = await prisma.pantryItem.findMany({
-		where: { userId },
-		select: { ingredientId: true },
-		distinct: ["ingredientId"],
-	});
+	const { pantrySet: pantryIngredientSet, shoppingSet: shoppingIngredientSet } = await getUserIngredientSets(userId);
 
-	const shoppingIngredientRows = await prisma.shoppingItem.findMany({
-		where: {
-			userId,
-			orderId: null,
-		},
-		select: { ingredientId: true },
-		distinct: ["ingredientId"],
-	});
-
-	const pantryIngredientSet = new Set(pantryIngredientRows.map((row) => row.ingredientId));
-	const shoppingIngredientSet = new Set(shoppingIngredientRows.map((row) => row.ingredientId));
 	if (pantryIngredientSet.size === 0) {
 		return {
 			cookable: [],
@@ -366,6 +601,7 @@ export async function listCookableRecipes(userId: number): Promise<CookableRecip
 			like: recipe.savedBy.length > 0,
 			author: recipe.author,
 			ingredientsCount: recipe._count.ingredients,
+			availableIngredientsCount: availableIngredients,
 			ingredients,
 		};
 
@@ -382,6 +618,261 @@ export async function listCookableRecipes(userId: number): Promise<CookableRecip
 	return {
 		cookable,
 		almostCookable,
+	};
+}
+
+export async function listRecipesOverview(
+	userId: number,
+	page: number = 1,
+	pageSize: number = 30
+): Promise<RecipeOverviewResponse> {
+	// Validate pagination params
+	if (!Number.isInteger(page) || page < 1) {
+		throw new RecipeError("VALIDATION_ERROR", 400, "page must be a positive integer", { page });
+	}
+	if (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > 100) {
+		throw new RecipeError("VALIDATION_ERROR", 400, "pageSize must be between 1 and 100", { pageSize });
+	}
+
+	// Get ingredient sets once
+	const { pantrySet, shoppingSet } = await getUserIngredientSets(userId);
+
+	// Get cookable and almost cookable recipes
+	if (pantrySet.size === 0) {
+		const skip = (page - 1) * pageSize;
+
+		const totalCount = await prisma.recipe.count();
+		const recipes = await prisma.recipe.findMany({
+			skip,
+			take: pageSize,
+			select: {
+				id: true,
+				name: true,
+				image: true,
+				difficulty: true,
+				prepTime: true,
+				createdAt: true,
+				updatedAt: true,
+				savedBy: {
+					where: { userId },
+					select: { userId: true },
+					take: 1,
+				},
+				author: {
+					select: {
+						id: true,
+						username: true,
+						avatar: true,
+					},
+				},
+				_count: {
+					select: {
+						ingredients: true,
+					},
+				},
+				ingredients: {
+					select: {
+						ingredientId: true,
+						quantity: true,
+						unit: true,
+						ingredient: {
+							select: {
+								id: true,
+								name: true,
+								category: {
+									select: {
+										id: true,
+										name: true,
+										icon: true,
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		});
+
+		const items = recipes.map((recipe) => ({
+			id: recipe.id,
+			name: recipe.name,
+			image: recipe.image,
+			difficulty: recipe.difficulty,
+			prepTime: recipe.prepTime,
+			createdAt: recipe.createdAt,
+			updatedAt: recipe.updatedAt,
+			like: recipe.savedBy.length > 0,
+			author: recipe.author,
+			ingredientsCount: recipe._count.ingredients,
+			availableIngredientsCount: 0,
+			ingredients: recipe.ingredients.map((item) => ({
+				ingredientId: item.ingredientId,
+				quantity: item.quantity,
+				unit: item.unit,
+				inStock: false,
+				inShoppingList: shoppingSet.has(item.ingredientId),
+				ingredient: item.ingredient,
+			})),
+		}));
+
+		return {
+			cookable: [],
+			almostCookable: [],
+			recipes: {
+				items,
+				total: totalCount,
+				page,
+				pageSize,
+				totalPages: Math.ceil(totalCount / pageSize),
+			},
+		};
+	}
+
+	// Get all recipes with full details
+	const allRecipes = await prisma.recipe.findMany({
+		where: {
+			ingredients: {
+				some: {},
+			},
+		},
+		orderBy: [
+			{ createdAt: "desc" },
+			{ id: "desc" },
+		],
+		select: {
+			id: true,
+			name: true,
+			image: true,
+			difficulty: true,
+			prepTime: true,
+			createdAt: true,
+			updatedAt: true,
+			savedBy: {
+				where: { userId },
+				select: { userId: true },
+				take: 1,
+			},
+			author: {
+				select: {
+					id: true,
+					username: true,
+					avatar: true,
+				},
+			},
+			_count: {
+				select: {
+					ingredients: true,
+				},
+			},
+			ingredients: {
+				select: {
+					ingredientId: true,
+					quantity: true,
+					unit: true,
+					ingredient: {
+						select: {
+							id: true,
+							name: true,
+							category: {
+								select: {
+									id: true,
+									name: true,
+									icon: true,
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	});
+
+	// Separate into cookable, almostCookable, and regular
+	const cookable: CookableRecipeListItem[] = [];
+	const almostCookable: CookableRecipeListItem[] = [];
+	const regularRecipes: RecipeListItem[] = [];
+
+	for (const recipe of allRecipes) {
+		const totalIngredients = recipe.ingredients.length;
+		if (totalIngredients === 0) {
+			continue;
+		}
+
+		const ingredients = recipe.ingredients.map((row) => ({
+			ingredientId: row.ingredientId,
+			quantity: row.quantity,
+			unit: row.unit,
+			inStock: pantrySet.has(row.ingredientId),
+			inShoppingList: shoppingSet.has(row.ingredientId),
+			ingredient: row.ingredient,
+		}));
+
+		const availableIngredients = ingredients.filter((item) => item.inStock).length;
+		const missingIngredients = totalIngredients - availableIngredients;
+		const availabilityRatio = availableIngredients / totalIngredients;
+
+		const baseMappped = {
+			id: recipe.id,
+			name: recipe.name,
+			image: recipe.image,
+			difficulty: recipe.difficulty,
+			prepTime: recipe.prepTime,
+			createdAt: recipe.createdAt,
+			updatedAt: recipe.updatedAt,
+			like: recipe.savedBy.length > 0,
+			author: recipe.author,
+			ingredientsCount: recipe._count.ingredients,
+			availableIngredientsCount: availableIngredients,
+		};
+
+		if (missingIngredients === 0) {
+			cookable.push({
+				...baseMappped,
+				ingredients: ingredients as CookableRecipeListItem["ingredients"],
+			});
+			continue;
+		}
+
+		if (availabilityRatio > 0.75 && missingIngredients <= 4) {
+			almostCookable.push({
+				...baseMappped,
+				ingredients: ingredients as CookableRecipeListItem["ingredients"],
+			});
+			continue;
+		}
+
+		// Regular recipe
+		regularRecipes.push({
+			...baseMappped,
+			ingredients: recipe.ingredients.map((item) => ({
+				ingredientId: item.ingredientId,
+				quantity: item.quantity,
+				unit: item.unit,
+				inStock: pantrySet.has(item.ingredientId),
+				inShoppingList: shoppingSet.has(item.ingredientId),
+				ingredient: item.ingredient,
+			})),
+		});
+	}
+
+	// Sort regular recipes
+	const sortedRecipes = regularRecipes.sort(compareRecipesByPantryCoverage);
+
+	// Paginate regular recipes
+	const skip = (page - 1) * pageSize;
+	const paginatedItems = sortedRecipes.slice(skip, skip + pageSize);
+	const totalPages = Math.ceil(sortedRecipes.length / pageSize);
+
+	return {
+		cookable,
+		almostCookable,
+		recipes: {
+			items: paginatedItems,
+			total: sortedRecipes.length,
+			page,
+			pageSize,
+			totalPages,
+		},
 	};
 }
 

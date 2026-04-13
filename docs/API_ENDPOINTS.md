@@ -15,7 +15,9 @@
 
 ## RECIPES
 
-- [GET] recipes -> Lista recetas con autor, número de ingredientes y `like` boolean según el usuario autenticado. Requiere auth.
+- [GET] recipes -> Lista paginada de recetas (excluyendo cookable y almost-cookable) con autor, número de ingredientes e indicadores `inStock` e `inShoppingList` por cada ingrediente. Soporta `page` (default 1) y `pageSize` (default 30, máximo 100). Ordena por mayor porcentaje de ingredientes disponibles en despensa, después por número absoluto de ingredientes disponibles, más recientes y luego `like=true`. Respuesta incluye información de paginación: `{ items: [], total, page, pageSize, totalPages }`. Requiere auth.
+- [GET] recipes/overview -> **Endpoint unificado optimizado:** devuelve en una sola petición: `cookable` (100% ingredientes), `almostCookable` (>75% ingredientes, max 4 faltantes), y `recipes` paginada (excluye las dos categorías anteriores). Los ingredientes de todas las listas incluyen `inStock` e `inShoppingList`. Soporta `page` y `pageSize` para recetas normales. Requiere auth.
+- [GET] recipes/search -> Búsqueda predictiva de recetas por nombre (`query`) con límite opcional (`limit`). Cada resultado incluye `like` (favorita), `ingredientsCount` (total), `pantryIngredientsCount` (en despensa) y `shoppingListIngredientsCount` (en lista de compra) según el usuario autenticado. Requiere auth.
 - [GET] recipes/cookable -> Devuelve dos listados: `cookable` (100% ingredientes disponibles) y `almostCookable` (más del 75% disponibles y como máximo 4 ingredientes faltantes). Requiere auth.
 - [GET] recipes/:id -> Obtiene detalle de receta con ingredientes. Requiere auth.
 - [POST] recipes/:id/like -> Marca o desmarca like para una receta del usuario autenticado (body obligatorio `{ like: boolean }`). El usuario se obtiene del token, no del body. Requiere auth.
