@@ -25,6 +25,10 @@
 - [PATCH] recipes/:id -> Actualiza una receta propia del usuario autenticado. Soporta `detail` para el paso a paso e `image` opcional. Requiere auth.
 - [DELETE] recipes/:id -> Elimina una receta propia del usuario autenticado. Requiere auth.
 
+## ORDERS
+
+- [POST] orders -> Crea un pedido para el usuario autenticado con `shopId`, `price` y `shopItems` (ids de shopping items). Debe enviarse como `multipart/form-data`. Permite `date`, `ticket` e `image` opcional. Si se envía `image`, se sube a Supabase Storage (`bucket: tickets`) usando como nombre de objeto el `id` del pedido creado, y se guarda la URL pública en `ticket`. El usuario se obtiene del token, no del body. Al crear el pedido, los `shopItems` se vinculan al `orderId`, se marcan como `checked=true` y además se crean automáticamente en `pantry_items` para el mismo usuario. Requiere auth.
+
 ## PANTRY
 
 - [GET] pantries -> Obtiene los ingredientes de la despensa del usuario autenticado.

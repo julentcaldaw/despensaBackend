@@ -7,6 +7,7 @@ import { swaggerSpec } from "./docs/swagger.js";
 import { authRouter } from "./modules/auth/auth.routes.js";
 import { automationRouter } from "./modules/automation/automation.routes.js";
 import { ingredientsRouter } from "./modules/ingredients/ingredients.routes.js";
+import { ordersRouter } from "./modules/orders/orders.routes.js";
 import { pantryItemsRouter } from "./modules/pantry-items/pantry-items.routes.js";
 import { recipesRouter } from "./modules/recipes/recipes.routes.js";
 import { shoppingRouter } from "./modules/shopping/shopping.routes.js";
@@ -57,6 +58,7 @@ app.get("/health", (_req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/automation", automationRouter);
 app.use("/api/ingredients", ingredientsRouter);
+app.use("/api/orders", ordersRouter);
 app.use("/api/pantry-items", pantryItemsRouter);
 app.use("/api/recipes", recipesRouter);
 app.use("/api/shopping-items", shoppingRouter);
