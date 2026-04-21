@@ -86,6 +86,12 @@ const upload = multer({
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
+
+import { listOrdersController } from "./orders.controller.js";
+
+// GET /api/orders
+ordersRouter.get("/", authenticateUser, listOrdersController);
+
 ordersRouter.post("/", authenticateUser, upload.single("image"), createOrderController);
 
 export { ordersRouter };

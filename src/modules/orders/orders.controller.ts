@@ -1,3 +1,81 @@
+/**
+ * @openapi
+ * /api/orders:
+ *   get:
+ *     summary: Lista los pedidos del usuario autenticado
+ *     description: Devuelve todos los pedidos realizados por el usuario autenticado, incluyendo los ítems asociados.
+ *     tags:
+ *       - Orders
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de pedidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Order'
+ *       401:
+ *         $ref: '#/components/responses/Unauthorized'
+ */
+import { prisma as prismaSingleton } from "../../lib/prisma.js";
+export async function listOrdersController(req: Request, res: Response) {
+	try {
+		const userId = req.user?.id;
+		if (!userId) {
+			return res.status(401).json({ ok: false, error: { code: "UNAUTHORIZED", message: "No autenticado" } });
+		}
+		const prisma = req.app?.locals?.prisma ?? prismaSingleton;
+		const orders = await prisma.order.findMany({
+			where: { userId },
+			orderBy: { createdAt: "desc" },
+			select: {
+				id: true,
+				userId: true,
+				shopId: true,
+				date: true,
+				price: true,
+				ticket: true,
+				createdAt: true,
+				updatedAt: true,
+				user: {
+					select: { id: true, email: true, username: true, avatar: true },
+				},
+				shop: { select: { id: true, name: true } },
+				shoppingItems: {
+					orderBy: { createdAt: "desc" },
+					select: {
+						id: true,
+						ingredientId: true,
+						shopId: true,
+						orderId: true,
+						quantity: true,
+						unit: true,
+						checked: true,
+						ingredient: {
+							select: {
+								id: true,
+								name: true,
+								category: { select: { id: true, name: true, icon: true } },
+							},
+						},
+						shop: { select: { id: true, name: true } },
+					},
+				},
+			},
+		});
+		return res.json({ ok: true, data: orders });
+	} catch (err) {
+		return res.status(500).json({ ok: false, error: { code: "INTERNAL_ERROR", message: "Error interno del servidor" } });
+	}
+}
 import type { Request, Response } from "express";
 import { createOrder, OrderError, type CreateOrderInput } from "./orders.service.js";
 

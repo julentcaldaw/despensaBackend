@@ -16,6 +16,7 @@ import { usersRouter } from "./modules/users/users.routes.js";
 
 dotenv.config();
 
+import { prisma } from "./lib/prisma.js";
 const app = express();
 
 const port = Number(process.env.PORT ?? 3000);
@@ -61,8 +62,11 @@ app.use("/api/automation", automationRouter);
 app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/orders", ordersRouter);
 app.use("/api/pantry-items", pantryItemsRouter);
+
 app.use("/api/recipes", recipesRouter);
 app.use("/api/shopping-items", shoppingRouter);
+app.locals.prisma = prisma;
+app.use("/api/orders", ordersRouter);
 
 app.use("/api/shops", shopsRouter);
 app.use("/api/users", usersRouter);
