@@ -25,7 +25,9 @@
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
  */
+import type { Request, Response } from "express";
 import { prisma as prismaSingleton } from "../../lib/prisma.js";
+import { createOrder, OrderError, type CreateOrderInput } from "./orders.service.js";
 export async function listOrdersController(req: Request, res: Response) {
 	try {
 		const userId = req.user?.id;
@@ -76,8 +78,6 @@ export async function listOrdersController(req: Request, res: Response) {
 		return res.status(500).json({ ok: false, error: { code: "INTERNAL_ERROR", message: "Error interno del servidor" } });
 	}
 }
-import type { Request, Response } from "express";
-import { createOrder, OrderError, type CreateOrderInput } from "./orders.service.js";
 
 type CreateOrderBody = {
 	shopId?: unknown;
