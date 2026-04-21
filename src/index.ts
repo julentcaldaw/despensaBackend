@@ -12,6 +12,7 @@ import { pantryItemsRouter } from "./modules/pantry-items/pantry-items.routes.js
 import { recipesRouter } from "./modules/recipes/recipes.routes.js";
 import { shoppingRouter } from "./modules/shopping/shopping.routes.js";
 import { shopsRouter } from "./modules/shops/shops.routes.js";
+import { usersRouter } from "./modules/users/users.routes.js";
 
 dotenv.config();
 
@@ -62,7 +63,9 @@ app.use("/api/orders", ordersRouter);
 app.use("/api/pantry-items", pantryItemsRouter);
 app.use("/api/recipes", recipesRouter);
 app.use("/api/shopping-items", shoppingRouter);
+
 app.use("/api/shops", shopsRouter);
+app.use("/api/users", usersRouter);
 
 
 app.listen(port, () => {

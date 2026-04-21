@@ -1,19 +1,20 @@
 import { Router } from "express";
-
 import { authenticateUser } from "../../middlewares/auth.middleware.js";
 import {
     createRecipeController,
     deleteRecipeController,
     getRecipeByIdController,
-    listCookableRecipesController,
-    listRecipesController,
+    listCookableRecipesController, listFavoriteRecipesController, listRecipesController,
     listRecipesOverviewController,
     searchRecipesController,
     setRecipeLikeController,
-    updateRecipeController,
+    updateRecipeController
 } from "./recipes.controller.js";
 
+
 const recipesRouter = Router();
+
+recipesRouter.get("/favorites", authenticateUser, listFavoriteRecipesController);
 
 /**
  * @openapi
@@ -471,3 +472,4 @@ recipesRouter.patch("/:id", authenticateUser, updateRecipeController);
 recipesRouter.delete("/:id", authenticateUser, deleteRecipeController);
 
 export { recipesRouter };
+

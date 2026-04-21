@@ -1,3 +1,93 @@
+/**
+ * Lista las recetas favoritas del usuario autenticado.
+ */
+export async function listFavoriteRecipes(userId: number): Promise<RecipeListItem[]> {
+	const { pantrySet, shoppingSet } = await getUserIngredientSets(userId);
+	const recipes = await prisma.recipe.findMany({
+		where: {
+			savedBy: {
+				some: { userId },
+			},
+		},
+		select: {
+			id: true,
+			name: true,
+			image: true,
+			difficulty: true,
+			prepTime: true,
+			createdAt: true,
+			updatedAt: true,
+			savedBy: {
+				where: { userId },
+				select: { userId: true },
+				take: 1,
+			},
+			author: {
+				select: {
+					id: true,
+					username: true,
+					avatar: true,
+				},
+			},
+			_count: {
+				select: {
+					ingredients: true,
+				},
+			},
+			ingredients: {
+				select: {
+					ingredientId: true,
+					quantity: true,
+					unit: true,
+					ingredient: {
+						select: {
+							id: true,
+							name: true,
+							category: {
+								select: {
+									id: true,
+									name: true,
+									icon: true,
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		orderBy: [
+			{ createdAt: "desc" },
+			{ id: "desc" },
+		],
+	});
+
+	return recipes.map((recipe) => {
+		const availableIngredientsCount = recipe.ingredients.filter((item) =>
+			pantrySet.has(item.ingredientId)
+		).length;
+		return {
+			id: recipe.id,
+			name: recipe.name,
+			image: recipe.image,
+			difficulty: recipe.difficulty,
+			prepTime: recipe.prepTime,
+			createdAt: recipe.createdAt,
+			updatedAt: recipe.updatedAt,
+			like: recipe.savedBy.length > 0,
+			author: recipe.author,
+			ingredientsCount: recipe._count.ingredients,
+			availableIngredientsCount,
+			ingredients: recipe.ingredients.map((item) => ({
+				ingredientId: item.ingredientId,
+				quantity: item.quantity,
+				unit: item.unit,
+				inStock: pantrySet.has(item.ingredientId),
+				inShoppingList: shoppingSet.has(item.ingredientId),
+				ingredient: item.ingredient,
+			})),
+		};
+	});
+}
 import type { Difficulty } from "@prisma/client";
 
 import { prisma } from "../../lib/prisma.js";

@@ -1,3 +1,48 @@
+/**
+ * @openapi
+ * /api/recipes/favorites:
+ *   get:
+ *     summary: Listar recetas favoritas del usuario
+ *     description: Devuelve todas las recetas marcadas como favoritas por el usuario autenticado.
+ *     tags:
+ *       - Recipes
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de recetas favoritas
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/RecipeListItem'
+ *       401:
+ *         description: No autenticado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+export async function listFavoriteRecipesController(req: Request, res: Response): Promise<Response> {
+	try {
+		const userId = getAuthenticatedUserId(req);
+		const recipes = await listFavoriteRecipes(userId);
+		return res.status(200).json({ ok: true, data: recipes });
+	} catch (error) {
+		console.error("[FAVORITE_RECIPES_ERROR]", error);
+		if (error instanceof RecipeError) {
+			return sendError(res, error.status, error.code, error.message, error.details);
+		}
+		return sendError(res, 500, "INTERNAL_ERROR", "Unexpected error listing favorite recipes");
+	}
+}
 import type { Difficulty } from "@prisma/client";
 import type { Request, Response } from "express";
 
@@ -6,6 +51,7 @@ import {
     deleteRecipe,
     getRecipeById,
     listCookableRecipes,
+    listFavoriteRecipes,
     listRecipes,
     listRecipesOverview,
     RecipeError,
