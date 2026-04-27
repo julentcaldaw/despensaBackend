@@ -2,6 +2,8 @@ type JsonPrimitive = string | number | boolean | null;
 type JsonValue = JsonPrimitive | JsonObject | JsonValue[];
 type JsonObject = { [key: string]: JsonValue };
 
+import { prisma } from "../../lib/prisma.js";
+
 export type TriggerWorkflowInput = {
 	recipe: JsonValue;
 };
@@ -9,6 +11,29 @@ export type TriggerWorkflowInput = {
 export type TriggerRecipeAutomationInput = {
 	recipeId: number;
 	recipeName: string;
+};
+
+export type TriggerWorkflowBatchInput = {
+	firstRecipeId: number;
+	totalRecipes: number;
+};
+
+export type TriggerWorkflowBatchItemResult = {
+	recipeId: number;
+	recipeName: string;
+	ok: boolean;
+	error?: {
+		code: string;
+		message: string;
+	};
+};
+
+export type TriggerWorkflowBatchResult = {
+	firstRecipeId: number;
+	totalRecipes: number;
+	processedRecipes: number;
+	nextRecipeId: number;
+	results: TriggerWorkflowBatchItemResult[];
 };
 
 export type TriggerWorkflowResult = {
@@ -220,6 +245,128 @@ export async function triggerRecipeWorkflow(input: TriggerRecipeAutomationInput)
 			name: input.recipeName.trim(),
 		},
 	});
+}
+
+function sleep(ms: number): Promise<void> {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function triggerRecipeWorkflowBatch(
+	input: TriggerWorkflowBatchInput
+): Promise<TriggerWorkflowBatchResult> {
+	if (!Number.isInteger(input.firstRecipeId) || input.firstRecipeId <= 0) {
+		throw new AutomationError("VALIDATION_ERROR", 400, "firstRecipeId must be a positive integer");
+	}
+
+	if (!Number.isInteger(input.totalRecipes) || input.totalRecipes <= 0) {
+		throw new AutomationError("VALIDATION_ERROR", 400, "totalRecipes must be a positive integer");
+	}
+
+	const firstRecipeId = input.firstRecipeId;
+	const totalRecipes = input.totalRecipes;
+	const delayMs = 10000;
+
+	const expectedIds = Array.from({ length: totalRecipes }, (_, index) => firstRecipeId + index);
+	const recipes = await prisma.recipe.findMany({
+		where: {
+			id: {
+				in: expectedIds,
+			},
+		},
+		select: {
+			id: true,
+			name: true,
+		},
+		orderBy: {
+			id: "asc",
+		},
+	});
+
+	if (recipes.length !== expectedIds.length) {
+		const foundIds = new Set(recipes.map((recipe) => recipe.id));
+		const missingIds = expectedIds.filter((id) => !foundIds.has(id));
+		throw new AutomationError("RECIPES_NOT_FOUND", 404, "Some recipes were not found", {
+			missingRecipeIds: missingIds,
+		});
+	}
+
+	const recipesById = new Map(recipes.map((recipe) => [recipe.id, recipe]));
+	const results: TriggerWorkflowBatchItemResult[] = [];
+
+	for (let index = 0; index < expectedIds.length; index += 1) {
+		const recipeId = expectedIds[index];
+		const recipe = recipesById.get(recipeId);
+
+		if (!recipe) {
+			throw new AutomationError("RECIPES_NOT_FOUND", 404, "Recipe was not found", {
+				recipeId,
+			});
+		}
+
+		try {
+			console.log(
+				`[automation:batch] [${index + 1}/${expectedIds.length}] calling recipeId=${recipe.id} recipeName=\"${recipe.name}\"`
+			);
+
+			await triggerRecipeWorkflow({
+				recipeId: recipe.id,
+				recipeName: recipe.name,
+			});
+
+			console.log(
+				`[automation:batch] [${index + 1}/${expectedIds.length}] response OK recipeId=${recipe.id}`
+			);
+
+			results.push({
+				recipeId: recipe.id,
+				recipeName: recipe.name,
+				ok: true,
+			});
+		} catch (error) {
+			if (error instanceof AutomationError) {
+				console.error(
+					`[automation:batch] [${index + 1}/${expectedIds.length}] response ERROR recipeId=${recipe.id} code=${error.code} message=\"${error.message}\"`
+				);
+
+				results.push({
+					recipeId: recipe.id,
+					recipeName: recipe.name,
+					ok: false,
+					error: {
+						code: error.code,
+						message: error.message,
+					},
+				});
+			} else {
+				const errorMessage = error instanceof Error ? error.message : String(error);
+				console.error(
+					`[automation:batch] [${index + 1}/${expectedIds.length}] response ERROR recipeId=${recipe.id} code=INTERNAL_ERROR message=\"${errorMessage}\"`
+				);
+
+				results.push({
+					recipeId: recipe.id,
+					recipeName: recipe.name,
+					ok: false,
+					error: {
+						code: "INTERNAL_ERROR",
+						message: error instanceof Error ? error.message : String(error),
+					},
+				});
+			}
+		}
+
+		if (index < expectedIds.length - 1) {
+			await sleep(delayMs);
+		}
+	}
+
+	return {
+		firstRecipeId,
+		totalRecipes,
+		processedRecipes: results.length,
+		nextRecipeId: firstRecipeId + totalRecipes,
+		results,
+	};
 }
 
 export async function getExecution(executionId: string): Promise<ExecutionDetails> {
