@@ -32,7 +32,6 @@ app.use(
 );
 app.use(express.json());
 
-// Swagger documentation
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /**

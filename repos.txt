@@ -1,0 +1,5 @@
+FRONT:
+https://github.com/julentcaldaw/despensa-frontend
+
+BACK:
+https://github.com/julentcaldaw/despensa-backend
